@@ -1,17 +1,7 @@
-# seatsio-react-native
+# seatsio-react, the official Seats.io React Native wrapper
 
-## Getting started
+React Native wrapper for rendering [Seats.io](https://www.seats.io) seating charts. Brought to you by the Seats.io team.
 
-`$ npm install seatsio-react-native --save`
+# Running the example
 
-### Mostly automatic installation
 
-`$ react-native link seatsio-react-native`
-
-## Usage
-```javascript
-import SeatsioReactNative from 'seatsio-react-native';
-
-// TODO: What to do with the module?
-SeatsioReactNative;
-```
