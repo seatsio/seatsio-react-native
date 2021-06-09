@@ -1,8 +1,7 @@
 {
   "name": "seatsio-react-native",
   "title": "Seatsio React Native",
-  "version": "1.0.0",
-  "description": "TODO",
+  "version": "0.0.1",
   "main": "index.js",
   "files": [
     "README.md",
@@ -11,20 +10,12 @@
     "ios",
     "seatsio-react-native.podspec"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/seatsio-react-native.git",
-    "baseUrl": "https://github.com/github_account/seatsio-react-native"
+    "url": "https://github.com/seatsio/seatsio-react-native"
   },
-  "keywords": [
-    "react-native"
-  ],
   "author": {
-    "name": "Your Name",
-    "email": "yourname@email.com"
+    "name": "bverbeken"
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",
