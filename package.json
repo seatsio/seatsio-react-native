@@ -3,6 +3,7 @@
   "title": "Seatsio React Native",
   "version": "0.0.1",
   "main": "index.js",
+  "description": "The official seats.io react-native wrapper library",
   "files": [
     "README.md",
     "android",
