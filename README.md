@@ -1,7 +1,5 @@
-# seatsio-react, the official Seats.io React Native wrapper
+# This is work in progress! 
+See https://github.com/seatsio/seatsio-react-native-poc for the old proof of concept code.  
 
-React Native wrapper for rendering [Seats.io](https://www.seats.io) seating charts. Brought to you by the Seats.io team.
-
-# Running the example
 
 
