@@ -31,7 +31,9 @@
   "readmeFilename": "README.md",
   "peerDependencies": {
     "react": ">=16.8.1",
-    "react-native": ">=0.60.0-rc.0 <1.0.x"
+    "react-native": ">=0.60.0-rc.0 <1.0.x",
+    "react-native-web": "~0.13.12",
+    "react-native-webview": "^11.4.5"
   },
   "devDependencies": {
     "react": "^16.9.0",

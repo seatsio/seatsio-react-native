@@ -1,7 +1,4 @@
-// main index.js
+import SeatsioSeatingChart from "./components/SeatsioSeatingChart";
 
-import { NativeModules } from 'react-native';
 
-const { SeatsioReactNative } = NativeModules;
-
-export default SeatsioReactNative;
+export default SeatsioSeatingChart;

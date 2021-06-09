@@ -12,6 +12,8 @@
   "dependencies": {
     "react": "17.0.1",
     "react-native": "0.64.2",
+    "react-native-web": "~0.13.12",
+    "react-native-webview": "^11.4.5",
     "seatsio-react-native": "link:../"
   },
   "devDependencies": {
