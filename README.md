@@ -37,7 +37,7 @@ Tip: be sure to check out the [examples folder](https://github.com/seatsio/seats
 
 Minimal: 
 ```jsx
-import SeatsioSeatingChart from "seatsio-react-native"
+import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
 
 <SeatsioSeatingChart
     workspaceKey="<yourPublicWorkspaceKey>"

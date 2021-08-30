@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
-import SeatsioSeatingChart from "seatsio-react-native";
+import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
 
 class SimpleSeatingChart extends React.Component {
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import SimpleSeatingChart from './examples/SimpleSeatingChart';
-import SeatingChartWithMethods from "./examples/SeatingChartWithMethods";
-import SeatingChartWithObjectMethods from "./examples/SeatingChartWithObjectMethods";
-import ReactToEventsExample from "./examples/ReactToEvents";
-import SeatsioReactNative from 'seatsio-react-native';
+import SeatingChartWithMethods from './examples/SeatingChartWithMethods';
+import SeatingChartWithObjectMethods from './examples/SeatingChartWithObjectMethods';
+import ReactToEventsExample from './examples/ReactToEvents';
 
 export default class App extends React.Component {
 
