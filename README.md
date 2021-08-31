@@ -1,4 +1,4 @@
-# Seatsio react-native component 
+# Seats.io react-native component 
 
 ## Introduction
 
