@@ -11,6 +11,7 @@ class ReactToEventsExample extends React.Component {
                     <Text>Demo: Simple Seating Chart, no config</Text>
                     <View style={this.styles.chart}>
                         <SeatsioSeatingChart
+                            region="eu"
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
                             session={'start'}

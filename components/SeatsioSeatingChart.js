@@ -37,7 +37,7 @@ class SeatsioSeatingChart extends React.Component {
     injectJsAndReturnDeferredFn(js, transformer) {
         const deferred = new Deferred(transformer)
         const uuid = randomUuid()
-        this.registerPromise(uuid, deferred)
+        this.registerPFromise(uuid, deferred)
         this.injectJs(js + `
             .then((o) => {
                 window.ReactNativeWebView.postMessage(JSON.stringify({
@@ -156,7 +156,7 @@ class SeatsioSeatingChart extends React.Component {
             <head>
                 <title>seating chart</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <script src="${this.props.chartJsUrl}"></script>
+                <script src="${this.props.chartJsUrl.replace('{region}', this.props.region)}"></script>
             </head>
             <body>
                 <div id="${this.divId}"></div>
@@ -385,12 +385,13 @@ class SeatsioSeatingChart extends React.Component {
 }
 
 SeatsioSeatingChart.defaultProps = {
-    chartJsUrl: 'https://cdn.seatsio.net/chart.js'
+    chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
 };
 
 SeatsioSeatingChart.propTypes = {
     event: PropTypes.string,
     events: PropTypes.array,
+    region: PropTypes.string,
     workspaceKey: PropTypes.string.isRequired,
     onChartRendered: PropTypes.func,
     onObjectClicked: PropTypes.func,

@@ -11,6 +11,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                     <Text>Demo: call methods on Objects</Text>
                     <View style={this.styles.chart}>
                         <SeatsioSeatingChart
+                            region="eu"
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
                             onChartRendered={(chart) => this.chart = chart}

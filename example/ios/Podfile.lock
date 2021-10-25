@@ -318,7 +318,7 @@ PODS:
     - React-cxxreact (= 0.64.2)
     - React-jsi (= 0.64.2)
     - React-perflogger (= 0.64.2)
-  - seatsio-react-native (0.0.1):
+  - seatsio-react-native (1.0.0):
     - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -459,7 +459,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: d5c367efcbf1aa55195bfcdb4859119fe1dacabc
+  FBReactNativeSpec: d138dd368d37752455c3cc6baa271b36840e7cca
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -494,7 +494,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 24600e3b1aaa77126989bc58b6747509a1ba14f3
   React-runtimeexecutor: a9904c6d0218fb9f8b19d6dd88607225927668f9
   ReactCommon: 149906e01aa51142707a10665185db879898e966
-  seatsio-react-native: 4d5d4805ceef578489e05d701e5e291b17f5e72e
+  seatsio-react-native: eb2965875b42a102084e978a3da786b433660526
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
