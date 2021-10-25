@@ -40,6 +40,7 @@ Minimal:
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
 
 <SeatsioSeatingChart
+    region="eu"
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
 />
