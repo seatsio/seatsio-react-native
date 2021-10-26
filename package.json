@@ -1,16 +1,9 @@
 {
   "name": "@seatsio/seatsio-react-native",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "title": "Seatsio React Native",
   "main": "index.js",
   "description": "The official seats.io react-native wrapper library",
-  "files": [
-    "README.md",
-    "android",
-    "index.js",
-    "ios",
-    "seatsio-react-native.podspec"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/seatsio/seatsio-react-native"
