@@ -37,7 +37,7 @@ class SeatsioSeatingChart extends React.Component {
     injectJsAndReturnDeferredFn(js, transformer) {
         const deferred = new Deferred(transformer)
         const uuid = randomUuid()
-        this.registerPFromise(uuid, deferred)
+        this.registerPromise(uuid, deferred)
         this.injectJs(js + `
             .then((o) => {
                 window.ReactNativeWebView.postMessage(JSON.stringify({
