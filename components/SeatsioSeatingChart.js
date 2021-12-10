@@ -81,6 +81,7 @@ class SeatsioSeatingChart extends React.Component {
     }
 
     render() {
+       const {style,containerStyle} = this.props;
         return (
             <WebView
                 ref={r => (this.webRef = r)}
@@ -88,6 +89,8 @@ class SeatsioSeatingChart extends React.Component {
                 source={{html: this.html()}}
                 injectedJavaScriptBeforeContentLoaded={this.pipeConsoleLog()}
                 onMessage={this.handleMessage.bind(this)}
+                style={style}
+                containerStyle={containerStyle}
             />
         );
     }
@@ -457,7 +460,15 @@ SeatsioSeatingChart.propTypes = {
     ticketListings: PropTypes.array,
     showZoomOutButtonOnMobile: PropTypes.bool,
     showFullScreenButton: PropTypes.bool,
-    channels: PropTypes.array
+    channels: PropTypes.array,
+    containerStyle: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.number
+    ]),
+     style: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.number
+    ]),
 };
 
 export default SeatsioSeatingChart;
