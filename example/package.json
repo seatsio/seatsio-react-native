@@ -10,10 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "react": "17.0.1",
-    "react-native": "0.64.2",
-    "react-native-web": "~0.13.12",
-    "react-native-webview": "^11.4.5",
+    "react": "18.1.0",
+    "react-native": "0.68.1",
+    "react-native-web": "0.17.7",
+    "react-native-webview": "11.18.2",
     "@seatsio/seatsio-react-native": "link:../"
   },
   "devDependencies": {
