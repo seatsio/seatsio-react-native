@@ -83,6 +83,7 @@ class SeatsioSeatingChart extends React.Component {
     render() {
         return (
             <WebView
+                androidLayerType="software"
                 ref={r => (this.webRef = r)}
                 originWhitelist={['*']}
                 source={{html: this.html()}}
