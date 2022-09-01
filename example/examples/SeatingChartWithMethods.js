@@ -15,7 +15,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
                             onChartRendered={(chart) => this.chart = chart}
-                            session={"start"}
+                            session="start"
                         />
 
                     </View>
