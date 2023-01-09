@@ -49,3 +49,15 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
 
 <Button title={"getHoldToken()"} onPress={() => this.chart.getHoldToken().then(holdToken => alert(holdToken))}/>
 ```
+
+### Showing seat labels
+```jsx
+import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
+
+<SeatsioSeatingChart
+    region="eu"
+    workspaceKey="<yourPublicWorkspaceKey>"
+    event="<yourEventKey>"
+    objectLabel={object => object.labels.own}
+/>
+```
