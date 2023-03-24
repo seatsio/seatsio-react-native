@@ -13,7 +13,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                         <SeatsioSeatingChart
                             region="eu"
                             workspaceKey="publicDemoKey"
-                            event="smallTheatreEvent2"
+                            event="largeTheatreEvent"
                             onChartRendered={(chart) => this.chart = chart}
                             session="start"
                         />
@@ -56,6 +56,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
 
                         <Button title={"zoomToSelectedObjects()"} onPress={() => this.chart.zoomToSelectedObjects().then(() => console.log("zooming done"))}/>
                         <Button title={"zoomToFilteredCategories()"} onPress={() => this.chart.zoomToFilteredCategories().then(() => console.log("zooming done"))}/>
+                        <Button title={"zoomToSection()"} onPress={() => this.chart.zoomToSection('Circle T').then(() => console.log("zooming done"))}/>
 
                     </View>
                 </ScrollView>
