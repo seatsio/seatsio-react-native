@@ -69,5 +69,9 @@ export default class Chart {
         return this.injectJsAndReturnDeferredFn(`chart.zoomToFilteredCategories()`)
     }
 
+    zoomToSection(section) {
+        return this.injectJsAndReturnDeferredFn('chart.zoomToSection(' + JSON.stringify(section) + ')')
+    }
+
 
 }
