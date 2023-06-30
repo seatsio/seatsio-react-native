@@ -50,7 +50,22 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
 <Button title={"getHoldToken()"} onPress={() => this.chart.getHoldToken().then(holdToken => alert(holdToken))}/>
 ```
 
-### Showing seat labels
+### Note for Hermes
+
+Since React Native 0.70, Hermes became the default JS engine. Hermes works fine with seatsio-react-native, but you'll
+need to make sure to add `'show source'` to some callbacks:
+
+- `objectColor`
+- `sectionColor`
+- `objectLabel`
+- `objectIcon`
+- `isObjectVisible`
+- `canGASelectionBeIncreased`
+
+If not, you'll see an error like `Uncaught ReferenceError: bytecode is not defined`.
+
+So for example, `objectColor` would look like this:
+
 ```jsx
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
 
@@ -58,6 +73,9 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
     region="eu"
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
-    objectLabel={object => object.labels.own}
+    objectColor={object => {
+        'show source'
+        return 'red'
+    }}
 />
 ```

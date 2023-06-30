@@ -14,6 +14,10 @@ class SimpleSeatingChart extends React.Component {
                             region="eu"
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
+                            isObjectVisible={() => {
+                                'show source'
+                                return true
+                            }}
                         />
                     </View>
 
