@@ -73,5 +73,7 @@ export default class Chart {
         return this.injectJsAndReturnDeferredFn('chart.zoomToSection(' + JSON.stringify(section) + ')')
     }
 
-
+    getReportBySelectability() {
+        return this.injectJsAndReturnDeferredFn(`chart.getReportBySelectability()`)
+    }
 }

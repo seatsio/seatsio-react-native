@@ -1,6 +1,5 @@
 import {WebView} from 'react-native-webview';
 import React from 'react';
-import PropTypes from 'prop-types';
 import Chart from "./chart";
 import Deferred from "./deferred";
 import {randomUuid} from "./util";
@@ -374,7 +373,7 @@ class SeatsioSeatingChart extends React.Component {
                 window.ReactNativeWebView.postMessage(JSON.stringify({
                     type: "log",
                     data: log
-                })));
+                }));
             };
             console.debug = console.log;
             console.info = console.log;
@@ -386,78 +385,6 @@ class SeatsioSeatingChart extends React.Component {
 
 SeatsioSeatingChart.defaultProps = {
     chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
-};
-
-SeatsioSeatingChart.propTypes = {
-    event: PropTypes.string,
-    events: PropTypes.array,
-    region: PropTypes.string,
-    workspaceKey: PropTypes.string.isRequired,
-    onChartRendered: PropTypes.func,
-    onObjectClicked: PropTypes.func,
-    onObjectSelected: PropTypes.func,
-    onObjectDeselected: PropTypes.func,
-    onSelectedObjectBooked: PropTypes.func,
-    onSessionInitialized: PropTypes.func,
-    onHoldSucceeded: PropTypes.func,
-    onHoldFailed: PropTypes.func,
-    onHoldTokenExpired: PropTypes.func,
-    onReleaseHoldSucceeded: PropTypes.func,
-    onReleaseHoldFailed: PropTypes.func,
-    onSelectionValid: PropTypes.func,
-    onSelectionInvalid: PropTypes.func,
-    onFullScreenOpened: PropTypes.func,
-    onFullScreenClosed: PropTypes.func,
-    onFilteredCategoriesChanged: PropTypes.func,
-    pricing: PropTypes.array,
-    priceFormatter: PropTypes.func,
-    numberOfPlacesToSelect: PropTypes.number,
-    objectWithoutPricingSelectable: PropTypes.bool,
-    objectWithoutCategorySelectable: PropTypes.bool,
-    selectedObjects: PropTypes.array,
-    colorScheme: PropTypes.string,
-    tooltipInfo: PropTypes.func,
-    objectTooltip: PropTypes.object,
-    language: PropTypes.string,
-    messages: PropTypes.object,
-    maxSelectedObjects: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-    selectedObjectsInputName: PropTypes.string,
-    unavailableCategories: PropTypes.array,
-    availableCategories: PropTypes.array,
-    selectableObjects: PropTypes.array,
-    filteredCategories: PropTypes.array,
-    objectColor: PropTypes.func,
-    sectionColor: PropTypes.func,
-    objectLabel: PropTypes.func,
-    objectIcon: PropTypes.func,
-    isObjectVisible: PropTypes.func,
-    canGASelectionBeIncreased: PropTypes.func,
-    showRowLabels: PropTypes.bool,
-    alwaysShowSectionContents: PropTypes.bool,
-    session: PropTypes.oneOf(['continue', 'manual', 'start', 'none']),
-    holdToken: PropTypes.string,
-    holdOnSelectForGAs: PropTypes.bool,
-    showLegend: PropTypes.bool,
-    legend: PropTypes.object,
-    multiSelectEnabled: PropTypes.bool,
-    showMinimap: PropTypes.bool,
-    showSectionPricingOverlay: PropTypes.bool,
-    showActiveSectionTooltipOnMobile: PropTypes.bool,
-    showViewFromYourSeatOnMobile: PropTypes.bool,
-    showViewFromYourSeatOnDesktop: PropTypes.bool,
-    selectionValidators: PropTypes.array,
-    categories: PropTypes.array,
-    categoryFilter: PropTypes.object,
-    objectCategories: PropTypes.object,
-    objectCategory: PropTypes.func,
-    extraConfig: PropTypes.object,
-    mode: PropTypes.string,
-    inputDevice: PropTypes.oneOf(['auto', 'cursor', 'touch']),
-    loading: PropTypes.string,
-    ticketListings: PropTypes.array,
-    showZoomOutButtonOnMobile: PropTypes.bool,
-    showFullScreenButton: PropTypes.bool,
-    channels: PropTypes.array
 };
 
 export default SeatsioSeatingChart;
