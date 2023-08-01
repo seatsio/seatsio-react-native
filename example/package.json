@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "expo": "48.0.19",
-    "expo-status-bar": "1.4.4",
+    "expo-status-bar": "1.6.0",
     "react": "18.2.0",
     "react-native": "0.72.1",
     "react-native-webview": "13.2.2",
