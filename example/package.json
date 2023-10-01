@@ -16,7 +16,7 @@
     "@seatsio/seatsio-react-native": "link:../"
   },
   "devDependencies": {
-    "@babel/core": "7.22.11"
+    "@babel/core": "7.23.0"
   },
   "private": true
 }
