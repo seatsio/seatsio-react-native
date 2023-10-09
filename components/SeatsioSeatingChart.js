@@ -87,6 +87,7 @@ class SeatsioSeatingChart extends React.Component {
                 source={{html: this.html()}}
                 injectedJavaScriptBeforeContentLoaded={this.pipeConsoleLog()}
                 onMessage={this.handleMessage.bind(this)}
+                style={{ backgroundColor: 'transparent' }}
             />
         );
     }
@@ -157,8 +158,8 @@ class SeatsioSeatingChart extends React.Component {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <script src="${this.props.chartJsUrl.replace('{region}', this.props.region)}"></script>
             </head>
-            <body>
-                <div id="${this.divId}"></div>
+            <body style="margin: 0; padding: 0;">
+                <div id="${this.divId}" style="width: 100%; height: 100%;"></div>
                 <script>
                     let promises = [];
                     let promiseCounter = 0;
