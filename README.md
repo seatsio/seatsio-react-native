@@ -50,6 +50,16 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
 <Button title={"getHoldToken()"} onPress={() => this.chart.getHoldToken().then(holdToken => alert(holdToken))}/>
 ```
 
+### Persisting the session token (i.e. the hold token)
+Seating charts store their hold token in the session storage of the browser. Since seatsio-react-native uses a webview to show the chart,
+you loose the hold token when the webview gets destroyed. That's inconvenient when you want te let the ticket buyer go back to a chart
+they previously opened (and in which they selected places).
+
+The solution is to:
+1. user navigates to the chart for the first time: render the chart with `session="start"`, and implement `onSessionInitialized` to store the hold token in your app
+2. user navigates away from the seating chart: webview gets destroyed
+3. user navigates back to the chart: render the chart with `session="manual"` and `holdToken="<the stored hold token>"`. Previously selected seats will automatically be selected again.
+
 ### Note for Hermes
 
 Since React Native 0.70, Hermes became the default JS engine. Hermes works fine with seatsio-react-native, but you'll
