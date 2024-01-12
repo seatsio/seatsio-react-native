@@ -1,8 +1,8 @@
-# Seats.io react-native component 
+# Seats.io React Native SDK 
 
 ## Introduction
 
-seatsio-react-native allows rendering seats.io seating charts inside a react-native application. 
+seatsio-react-native allows rendering seats.io seating charts inside a React Native application. 
 
 It uses [React Native Webview](https://github.com/react-native-webview/react-native-webview) as an embedded browser.
 
