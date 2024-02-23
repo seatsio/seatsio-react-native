@@ -30,7 +30,15 @@ class SeatsioSeatingChart extends React.Component {
     }
 
     injectJs(js) {
-        this.webRef.injectJavaScript(js + '; true;');
+        try {
+            this.webRef.injectJavaScript(js + '; true;');
+        } catch (e) {
+            if(this)
+            this.props._customError({
+                error: 'this.webRef.injectJavaScript',
+                message: e.message ? e.message : 'Missing this.webRef'
+            });
+        }
     }
 
     injectJsAndReturnDeferredFn(js, transformer) {
