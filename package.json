@@ -1,6 +1,6 @@
 {
   "name": "@seatsio/seatsio-react-native",
-  "version": "4.7.0",
+  "version": "4.8.0",
   "title": "Seatsio React Native",
   "main": "index.js",
   "description": "The official seats.io react-native wrapper library",
