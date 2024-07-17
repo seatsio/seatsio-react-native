@@ -21,5 +21,9 @@
     "react": ">=18.0.0",
     "react-native": ">=0.69.0",
     "react-native-webview": ">=11.0.0"
+  },
+  "devDependencies": {
+    "semver": "7.6.3",
+    "zx": "8.1.4"
   }
 }
