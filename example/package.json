@@ -8,15 +8,15 @@
     "ios": "expo start --ios"
   },
   "dependencies": {
-    "expo": "51.0.34",
+    "expo": "51.0.38",
     "expo-status-bar": "1.12.1",
     "react": "18.3.1",
-    "react-native": "0.75.3",
-    "react-native-webview": "13.12.2",
+    "react-native": "0.76.1",
+    "react-native-webview": "13.12.3",
     "@seatsio/seatsio-react-native": "link:../"
   },
   "devDependencies": {
-    "@babel/core": "7.25.2"
+    "@babel/core": "7.26.0"
   },
   "private": true
 }
