@@ -24,6 +24,6 @@
   },
   "devDependencies": {
     "semver": "7.6.3",
-    "zx": "8.2.0"
+    "zx": "8.2.4"
   }
 }
