@@ -10,7 +10,7 @@
 // see also this discussion:
 // https://github.com/brodybits/create-react-native-module/issues/232
 
-const path = require('path')
+import path from 'path'
 
 module.exports = {
   // workaround for an issue with symlinks encountered starting with

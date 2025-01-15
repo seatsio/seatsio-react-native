@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View, Alert, Button} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, Button} from 'react-native';
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
 
 class SimpleSeatingChartWithChangeConfig extends React.Component {
@@ -39,7 +39,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                             onPress={() => {
                                 this.chart.changeConfig({
                                     objectColor: object => object.isSelectable() ? 'green' : 'red',
-                                    objectLabel: object => 'x',
+                                    objectLabel: () => 'x',
                                     numberOfPlacesToSelect: 5
                                 })
                             }}

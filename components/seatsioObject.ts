@@ -1,5 +1,4 @@
 import { InteractiveObject, SeatingChart } from "@seatsio/seatsio-types"
-import Deferred from "./deferred"
 import { JavaScriptInjectorFunction } from "./SeatsioSeatingChart"
 
 interface ObjectData {

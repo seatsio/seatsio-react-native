@@ -1,4 +1,3 @@
-import { ChartRendererConfigOptions } from "@seatsio/seatsio-types";
 import SeatsioObject from "./seatsioObject";
 import { JavaScriptInjectorFunction } from "./SeatsioSeatingChart";
 

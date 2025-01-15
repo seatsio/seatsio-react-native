@@ -14,7 +14,7 @@ type SeatingChartProps = ChartRendererConfigOptions & {
 // Check type for o parameter
 export type JavaScriptInjectorFunction = (js: string, transformer?: (o: any) => any) => Deferred
 
-class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
+class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     private divId: string
     private promises: Record<string, Deferred>
     // TODO: Fix ref type
@@ -74,7 +74,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
         return deferred
     }
 
-    registerPromise<T>(name: string, promise: Deferred) {
+    registerPromise(name: string, promise: Deferred) {
         this.promises[name] = promise
     }
 
@@ -151,9 +151,11 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
             this.props.onFilteredCategoriesChanged?.(message.data.categories)
         } else if (message.type === 'priceFormatterRequested') {
             const formattedPrice = this.props.priceFormatter?.(message.data.price)
-            formattedPrice && this.injectJs(
-                `resolvePromise(${message.data.promiseId}, "${formattedPrice}")`
-            );
+            if (formattedPrice) {
+                this.injectJs(
+                    `resolvePromise(${message.data.promiseId}, "${formattedPrice}")`
+                )
+            }
         } else if (message.type === 'tooltipInfoRequested') {
             const tooltipInfo = this.props.tooltipInfo?.(message.data.object)
             this.injectJs(
