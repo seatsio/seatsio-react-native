@@ -19,7 +19,8 @@ export default tseslint.config(
             }
         },
         rules: {
-            '@typescript-eslint/no-explicit-any': 'off'
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@stylistic/indent': ['error', 4]
         },
     }
 ).concat({
