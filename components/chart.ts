@@ -1,8 +1,12 @@
+import { ChartRendererConfigOptions } from "@seatsio/seatsio-types";
 import SeatsioObject from "./seatsioObject";
+import { JavaScriptInjectorFunction } from "./SeatsioSeatingChart";
 
 export default class Chart {
+    private data: any
+    private injectJsAndReturnDeferredFn: JavaScriptInjectorFunction
 
-    constructor(data, injectJsAndReturnDeferredFn) {
+    constructor(data: any, injectJsAndReturnDeferredFn: JavaScriptInjectorFunction) {
         this.data = data
         this.injectJsAndReturnDeferredFn = injectJsAndReturnDeferredFn
     }
@@ -27,23 +31,24 @@ export default class Chart {
         return this.injectJsAndReturnDeferredFn('chart.clearSelection()')
     }
 
-    selectObjects(objects) {
+    selectObjects(objects: SeatsioObject[]) {
         return this.injectJsAndReturnDeferredFn(`chart.selectObjects(${JSON.stringify(objects)})`)
     }
 
-    deselectObjects(objects) {
+    deselectObjects(objects: SeatsioObject[]) {
         return this.injectJsAndReturnDeferredFn(`chart.deselectObjects(${JSON.stringify(objects)})`)
     }
 
-    selectCategories(categories) {
+    selectCategories(categories: string[]) {
         return this.injectJsAndReturnDeferredFn(`chart.selectCategories(${JSON.stringify(categories)})`)
     }
 
-    deselectCategories(categories) {
+    deselectCategories(categories: string[]) {
         return this.injectJsAndReturnDeferredFn(`chart.deselectCategories(${JSON.stringify(categories)})`)
     }
 
-    changeConfig(newConfig) {
+    // TODO: Serialzed config type?
+    changeConfig(newConfig: any) {
         if (newConfig.objectColor) {
             newConfig.objectColor = newConfig.objectColor.toString()
         }
@@ -53,7 +58,7 @@ export default class Chart {
         return this.injectJsAndReturnDeferredFn('chart.changeConfig(' + JSON.stringify(newConfig) + ')')
     }
 
-    findObject(label) {
+    findObject(label: string) {
         return this.injectJsAndReturnDeferredFn(`chart.findObject(${JSON.stringify(label)})`, o => new SeatsioObject(o, this.injectJsAndReturnDeferredFn))
     }
 
@@ -69,7 +74,7 @@ export default class Chart {
         return this.injectJsAndReturnDeferredFn(`chart.zoomToFilteredCategories()`)
     }
 
-    zoomToSection(section) {
+    zoomToSection(section: string) {
         return this.injectJsAndReturnDeferredFn('chart.zoomToSection(' + JSON.stringify(section) + ')')
     }
 

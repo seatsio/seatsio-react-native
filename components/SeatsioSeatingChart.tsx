@@ -4,19 +4,37 @@ import Chart from "./chart";
 import Deferred from "./deferred";
 import {randomUuid} from "./util";
 import SeatsioObject from "./seatsioObject";
+import { ChartRendererConfigOptions, Region } from '@seatsio/seatsio-types'
 
-class SeatsioSeatingChart extends React.Component {
-    constructor(props) {
+type SeatingChartProps = ChartRendererConfigOptions & {
+    chartJsUrl?: string
+    region: Region
+}
+
+// Check type for o parameter
+export type JavaScriptInjectorFunction = (js: string, transformer?: (o: any) => any) => Deferred
+
+class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
+    private divId: string
+    private promises: { [key: string]: Deferred }
+    // TODO: Fix ref type
+    private webRef?: any
+
+    constructor(props: SeatingChartProps) {
         super(props);
         this.divId = 'chart';
         this.promises = {}
     }
 
-    async componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps: SeatingChartProps) {
         if (this.didPropsChange(this.props, prevProps)) {
             this.destroyChart();
             this.rerenderChart();
         }
+    }
+
+    private getChartJsUrl() {
+        return (this.props.chartJsUrl || 'https://cdn-{region}.seatsio.net/chart.js').replace('{region}', this.props.region)
     }
 
     rerenderChart() {
@@ -29,11 +47,11 @@ class SeatsioSeatingChart extends React.Component {
         this.injectJs('chart.destroy();');
     }
 
-    injectJs(js) {
-        this.webRef.injectJavaScript(js + '; true;');
+    injectJs(js: string) {
+        this.webRef?.injectJavaScript(js + '; true;');
     }
 
-    injectJsAndReturnDeferredFn(js, transformer) {
+    injectJsAndReturnDeferredFn(js: string, transformer?: (o: any) => any) {
         const deferred = new Deferred(transformer)
         const uuid = randomUuid()
         this.registerPromise(uuid, deferred)
@@ -56,15 +74,17 @@ class SeatsioSeatingChart extends React.Component {
         return deferred
     }
 
-    registerPromise(name, promise) {
+    registerPromise<T>(name: string, promise: Deferred) {
         this.promises[name] = promise
     }
 
-    didPropsChange(prevProps, nextProps) {
+    didPropsChange(prevProps: SeatingChartProps, nextProps: SeatingChartProps) {
         if (Object.keys(prevProps).length !== Object.keys(nextProps).length) {
             return true;
         }
-        return Object.keys(nextProps).some(propName => {
+
+        const configKeys: (keyof SeatingChartProps)[] = Object.keys(nextProps) as (keyof SeatingChartProps)[]
+        return configKeys.some((propName): boolean => {
             let prevValue = prevProps[propName];
             let nextValue = nextProps[propName];
             if (prevValue && nextValue) {
@@ -82,7 +102,7 @@ class SeatsioSeatingChart extends React.Component {
     render() {
         return (
             <WebView
-                ref={r => (this.webRef = r)}
+                ref={r => (this.webRef = r) as any}
                 originWhitelist={['*']}
                 source={{html: this.html()}}
                 injectedJavaScriptBeforeContentLoaded={this.pipeConsoleLog()}
@@ -92,49 +112,50 @@ class SeatsioSeatingChart extends React.Component {
         );
     }
 
-    handleMessage(event) {
+    handleMessage(event: any) {
         let message = JSON.parse(event.nativeEvent.data);
         if (message.type === 'log') {
             console.log(message.data);
         } else if (message.type === 'onChartRendered') {
-            this.props.onChartRendered(new Chart(message.data.chart, this.injectJsAndReturnDeferredFn.bind(this)));
+            this.props.onChartRendered?.(new Chart(message.data.chart, this.injectJsAndReturnDeferredFn.bind(this)) as any)
         } else if (message.type === 'onObjectClicked') {
-            this.props.onObjectClicked(new SeatsioObject(message.data.object, this.injectJsAndReturnDeferredFn.bind(this)));
+            this.props.onObjectClicked?.(new SeatsioObject(message.data.object, this.injectJsAndReturnDeferredFn.bind(this)) as any)
         } else if (message.type === 'onObjectSelected') {
-            this.props.onObjectSelected(new SeatsioObject(message.data.object, this.injectJsAndReturnDeferredFn.bind(this)), message.data.selectedTicketType)
+            this.props.onObjectSelected?.(new SeatsioObject(message.data.object, this.injectJsAndReturnDeferredFn.bind(this)) as any, message.data.selectedTicketType)
         } else if (message.type === 'onObjectDeselected') {
-            this.props.onObjectDeselected(new SeatsioObject(message.data.object, this.injectJsAndReturnDeferredFn.bind(this)), message.data.deselectedTicketType)
+            this.props.onObjectDeselected?.(new SeatsioObject(message.data.object, this.injectJsAndReturnDeferredFn.bind(this)) as any, message.data.deselectedTicketType)
         } else if (message.type === 'onSelectedObjectBooked') {
-            this.props.onSelectedObjectBooked(new SeatsioObject(message.data.object, this.injectJsAndReturnDeferredFn.bind(this)))
+            this.props.onSelectedObjectBooked?.(new SeatsioObject(message.data.object, this.injectJsAndReturnDeferredFn.bind(this)) as any)
         } else if (message.type === 'onSessionInitialized') {
-            this.props.onSessionInitialized(message.data.holdToken)
+            this.props.onSessionInitialized?.(message.data.holdToken)
         } else if (message.type === 'onHoldSucceeded') {
-            this.props.onHoldSucceeded(message.data.objects, message.data.ticketTypes)
+            this.props.onHoldSucceeded?.(message.data.objects, message.data.ticketTypes)
         } else if (message.type === 'onHoldFailed') {
-            this.props.onHoldFailed(message.data.objects, message.data.ticketTypes)
+            this.props.onHoldFailed?.(message.data.objects, message.data.ticketTypes)
         } else if (message.type === 'onHoldTokenExpired') {
-            this.props.onHoldTokenExpired()
+            this.props.onHoldTokenExpired?.()
         } else if (message.type === 'onReleaseHoldSucceeded') {
-            this.props.onReleaseHoldSucceeded(message.data.objects, message.data.ticketTypes)
+            this.props.onReleaseHoldSucceeded?.(message.data.objects, message.data.ticketTypes)
         } else if (message.type === 'onReleaseHoldFailed') {
-            this.props.onReleaseHoldFailed(message.data.objects, message.data.ticketTypes)
+            this.props.onReleaseHoldFailed?.(message.data.objects, message.data.ticketTypes)
         } else if (message.type === 'onSelectionValid') {
-            this.props.onSelectionValid()
+            this.props.onSelectionValid?.()
         } else if (message.type === 'onSelectionInvalid') {
-            this.props.onSelectionInvalid()
+            // FIXME: What should the property on message.data be?
+            this.props.onSelectionInvalid?.(message.data.violations)
         } else if (message.type === 'onFullScreenOpened') {
-            this.props.onFullScreenOpened()
+            this.props.onFullScreenOpened?.()
         } else if (message.type === 'onFullScreenClosed') {
-            this.props.onFullScreenClosed()
+            this.props.onFullScreenClosed?.()
         } else if (message.type === 'onFilteredCategoriesChanged') {
-            this.props.onFilteredCategoriesChanged(message.data.categories)
+            this.props.onFilteredCategoriesChanged?.(message.data.categories)
         } else if (message.type === 'priceFormatterRequested') {
-            let formattedPrice = this.props.priceFormatter(message.data.price);
-            this.injectJs(
+            let formattedPrice = this.props.priceFormatter?.(message.data.price)
+            formattedPrice && this.injectJs(
                 `resolvePromise(${message.data.promiseId}, "${formattedPrice}")`
             );
         } else if (message.type === 'tooltipInfoRequested') {
-            let tooltipInfo = this.props.tooltipInfo(message.data.object);
+            let tooltipInfo = this.props.tooltipInfo?.(message.data.object)
             this.injectJs(
                 `resolvePromise(${message.data.promiseId}, "${tooltipInfo}")`
             );
@@ -142,9 +163,9 @@ class SeatsioSeatingChart extends React.Component {
             let promise = this.promises[message.type];
             if (promise !== undefined) {
                 if (message.promiseResult === 'resolve') {
-                    promise.resolve(message.data)
+                    promise.resolve?.(message.data)
                 } else {
-                    promise.reject(message.data)
+                    promise.reject?.(message.data)
                 }
             }
         }
@@ -156,7 +177,7 @@ class SeatsioSeatingChart extends React.Component {
             <head>
                 <title>seating chart</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <script src="${this.props.chartJsUrl.replace('{region}', this.props.region)}"></script>
+                <script src="${this.getChartJsUrl()}"></script>
             </head>
             <body style="margin: 0; padding: 0;">
                 <div id="${this.divId}" style="width: 100%; height: 100%;"></div>
@@ -180,8 +201,8 @@ class SeatsioSeatingChart extends React.Component {
         `;
     }
 
-    registerPostMessage(event, callbackParams) {
-        const data = callbackParams.map(param => param + ': ' + param).join(', ')
+    registerPostMessage(event: any, callbackParams: any) {
+        const data = callbackParams.map((param: any) => param + ': ' + param).join(', ')
         return `
                 , "${event}": (${callbackParams.join(', ')}) => {
                     window.ReactNativeWebView.postMessage(JSON.stringify({
@@ -383,9 +404,5 @@ class SeatsioSeatingChart extends React.Component {
         `;
     }
 }
-
-SeatsioSeatingChart.defaultProps = {
-    chartJsUrl: 'https://cdn-{region}.seatsio.net/chart.js'
-};
 
 export default SeatsioSeatingChart;
