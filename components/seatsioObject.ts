@@ -2,7 +2,7 @@ import { InteractiveObject, SeatingChart } from "@seatsio/seatsio-types"
 import Deferred from "./deferred"
 import { JavaScriptInjectorFunction } from "./SeatsioSeatingChart"
 
-type ObjectData = {
+interface ObjectData {
     category: string
     center: any
     chart: SeatingChart

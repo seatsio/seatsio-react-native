@@ -16,7 +16,7 @@ export type JavaScriptInjectorFunction = (js: string, transformer?: (o: any) => 
 
 class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
     private divId: string
-    private promises: { [key: string]: Deferred }
+    private promises: Record<string, Deferred>
     // TODO: Fix ref type
     private webRef?: any
 
@@ -85,8 +85,8 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
 
         const configKeys: (keyof SeatingChartProps)[] = Object.keys(nextProps) as (keyof SeatingChartProps)[]
         return configKeys.some((propName): boolean => {
-            let prevValue = prevProps[propName];
-            let nextValue = nextProps[propName];
+            const prevValue = prevProps[propName];
+            const nextValue = nextProps[propName];
             if (prevValue && nextValue) {
                 if (typeof prevValue === 'function' && typeof nextValue === 'function') {
                     return prevValue.toString() !== nextValue.toString();
@@ -113,7 +113,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
     }
 
     handleMessage(event: any) {
-        let message = JSON.parse(event.nativeEvent.data);
+        const message = JSON.parse(event.nativeEvent.data);
         if (message.type === 'log') {
             console.log(message.data);
         } else if (message.type === 'onChartRendered') {
@@ -150,17 +150,17 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
         } else if (message.type === 'onFilteredCategoriesChanged') {
             this.props.onFilteredCategoriesChanged?.(message.data.categories)
         } else if (message.type === 'priceFormatterRequested') {
-            let formattedPrice = this.props.priceFormatter?.(message.data.price)
+            const formattedPrice = this.props.priceFormatter?.(message.data.price)
             formattedPrice && this.injectJs(
                 `resolvePromise(${message.data.promiseId}, "${formattedPrice}")`
             );
         } else if (message.type === 'tooltipInfoRequested') {
-            let tooltipInfo = this.props.tooltipInfo?.(message.data.object)
+            const tooltipInfo = this.props.tooltipInfo?.(message.data.object)
             this.injectJs(
                 `resolvePromise(${message.data.promiseId}, "${tooltipInfo}")`
             );
         } else {
-            let promise = this.promises[message.type];
+            const promise = this.promises[message.type];
             if (promise !== undefined) {
                 if (message.promiseResult === 'resolve') {
                     promise.resolve?.(message.data)
@@ -216,7 +216,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps, {}> {
     }
 
     configAsString() {
-        let {
+        const {
             onChartRendered,
             onObjectClicked,
             onObjectSelected,
