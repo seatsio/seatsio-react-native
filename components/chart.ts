@@ -1,5 +1,5 @@
-import SeatsioObject from "./seatsioObject"
-import { JavaScriptInjectorFunction } from "./SeatsioSeatingChart"
+import SeatsioObject from './seatsioObject'
+import { JavaScriptInjectorFunction } from './SeatsioSeatingChart'
 
 export default class Chart {
     private data: any
@@ -11,7 +11,7 @@ export default class Chart {
     }
 
     getHoldToken() {
-        return this.injectJsAndReturnDeferredFn(`getHoldToken()`)
+        return this.injectJsAndReturnDeferredFn('getHoldToken()')
     }
 
     resetView() {
@@ -23,7 +23,7 @@ export default class Chart {
     }
 
     listSelectedObjects() {
-        return this.injectJsAndReturnDeferredFn(`chart.listSelectedObjects()`)
+        return this.injectJsAndReturnDeferredFn('chart.listSelectedObjects()')
     }
 
     clearSelection() {
@@ -62,15 +62,15 @@ export default class Chart {
     }
 
     listCategories() {
-        return this.injectJsAndReturnDeferredFn(`chart.listCategories()`)
+        return this.injectJsAndReturnDeferredFn('chart.listCategories()')
     }
 
     zoomToSelectedObjects() {
-        return this.injectJsAndReturnDeferredFn(`chart.zoomToSelectedObjects()`)
+        return this.injectJsAndReturnDeferredFn('chart.zoomToSelectedObjects()')
     }
 
     zoomToFilteredCategories() {
-        return this.injectJsAndReturnDeferredFn(`chart.zoomToFilteredCategories()`)
+        return this.injectJsAndReturnDeferredFn('chart.zoomToFilteredCategories()')
     }
 
     zoomToSection(section: string) {
@@ -78,6 +78,6 @@ export default class Chart {
     }
 
     getReportBySelectability() {
-        return this.injectJsAndReturnDeferredFn(`chart.getReportBySelectability()`)
+        return this.injectJsAndReturnDeferredFn('chart.getReportBySelectability()')
     }
 }

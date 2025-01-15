@@ -17,18 +17,18 @@ class ReactToEventsExample extends React.Component {
                             session={'start'}
                             onObjectSelected={o => o.pulse()}
                             onObjectDeselected={o => o.unpulse()}
-                            onObjectClicked={o => console.log("object clicked: " + o.label)}
-                            onSelectedObjectBooked={o => console.log("You selected " + o.label + ' but it became unavailable in the meantime')}
+                            onObjectClicked={o => console.log('object clicked: ' + o.label)}
+                            onSelectedObjectBooked={o => console.log('You selected ' + o.label + ' but it became unavailable in the meantime')}
                             onSessionInitialized={holdToken => console.log('new token: ' + holdToken.token)}
-                            onHoldSucceeded={(objects, ticketTypes) => console.log('objects held: ' + objects.map(o => o.label).join(', ') + " with ticket types: " + ticketTypes.join(', '))}
-                            onHoldFailed={(objects, ticketTypes) => console.log('holding objects failed: ' + objects.map(o => o.label).join(', ') + " with ticket types: " + ticketTypes.join(', '))}
+                            onHoldSucceeded={(objects, ticketTypes) => console.log('objects held: ' + objects.map(o => o.label).join(', ') + ' with ticket types: ' + ticketTypes.join(', '))}
+                            onHoldFailed={(objects, ticketTypes) => console.log('holding objects failed: ' + objects.map(o => o.label).join(', ') + ' with ticket types: ' + ticketTypes.join(', '))}
                             onHoldTokenExpired={() => console.log('hold expired!')}
                             onReleaseHoldSucceeded={(objects, ticketTypes) => console.log('release hold succeeded: ', objects, ticketTypes)}
                             onReleaseHoldFailed={(objects, ticketTypes) => console.log('release hold failed: ', objects, ticketTypes)}
-                            onSelectionValid={() => console.log("selection valid")}
-                            onSelectionInvalid={() => console.log("selection invalid")}
-                            onFullScreenOpened={() => console.log("full screen opened")}
-                            onFullScreenClosed={() => console.log("full screen closed")}
+                            onSelectionValid={() => console.log('selection valid')}
+                            onSelectionInvalid={() => console.log('selection invalid')}
+                            onFullScreenOpened={() => console.log('full screen opened')}
+                            onFullScreenClosed={() => console.log('full screen closed')}
                         />
                     </View>
 

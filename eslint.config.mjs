@@ -21,7 +21,8 @@ export default tseslint.config(
         rules: {
             '@typescript-eslint/no-explicit-any': 'off',
             '@stylistic/indent': ['error', 4],
-            '@stylistic/semi': ['error', 'never']
+            '@stylistic/semi': ['error', 'never'],
+            '@stylistic/quotes': ['error', 'single'],
         },
     }
 ).concat({

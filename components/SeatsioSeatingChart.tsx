@@ -1,9 +1,9 @@
 import {WebView} from 'react-native-webview'
 import React from 'react'
-import Chart from "./chart"
-import Deferred from "./deferred"
-import {randomUuid} from "./util"
-import SeatsioObject from "./seatsioObject"
+import Chart from './chart'
+import Deferred from './deferred'
+import {randomUuid} from './util'
+import SeatsioObject from './seatsioObject'
 import { ChartRendererConfigOptions, Region } from '@seatsio/seatsio-types'
 
 type SeatingChartProps = ChartRendererConfigOptions & {

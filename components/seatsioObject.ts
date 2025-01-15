@@ -1,5 +1,5 @@
-import { InteractiveObject, SeatingChart } from "@seatsio/seatsio-types"
-import { JavaScriptInjectorFunction } from "./SeatsioSeatingChart"
+import { InteractiveObject, SeatingChart } from '@seatsio/seatsio-types'
+import { JavaScriptInjectorFunction } from './SeatsioSeatingChart'
 
 interface ObjectData {
     category: string
