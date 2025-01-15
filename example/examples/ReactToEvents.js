@@ -1,6 +1,6 @@
-import React from 'react';
-import {StyleSheet, View, Text, ScrollView} from 'react-native';
-import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
+import React from 'react'
+import {StyleSheet, View, Text, ScrollView} from 'react-native'
+import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 
 class ReactToEventsExample extends React.Component {
 
@@ -34,7 +34,7 @@ class ReactToEventsExample extends React.Component {
 
                 </ScrollView>
             </View>
-        );
+        )
     }
 
 
@@ -52,9 +52,9 @@ class ReactToEventsExample extends React.Component {
             width: '100%',
             height: 400,
         },
-    });
+    })
 
 }
 
 
-export default ReactToEventsExample;
+export default ReactToEventsExample

@@ -1,3 +1,3 @@
-import SeatsioSeatingChart from "./components/SeatsioSeatingChart";
+import SeatsioSeatingChart from "./components/SeatsioSeatingChart"
 
-export default SeatsioSeatingChart;
+export default SeatsioSeatingChart

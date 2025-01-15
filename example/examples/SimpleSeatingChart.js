@@ -1,6 +1,6 @@
-import React from 'react';
-import {StyleSheet, View, Text, ScrollView} from 'react-native';
-import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
+import React from 'react'
+import {StyleSheet, View, Text, ScrollView} from 'react-native'
+import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 
 class SimpleSeatingChart extends React.Component {
 
@@ -19,7 +19,7 @@ class SimpleSeatingChart extends React.Component {
 
                 </ScrollView>
             </View>
-        );
+        )
     }
 
 
@@ -37,9 +37,9 @@ class SimpleSeatingChart extends React.Component {
             width: '100%',
             height: 400,
         },
-    });
+    })
 
 }
 
 
-export default SimpleSeatingChart;
+export default SimpleSeatingChart

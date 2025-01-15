@@ -1,9 +1,9 @@
-import {WebView} from 'react-native-webview';
-import React from 'react';
-import Chart from "./chart";
-import Deferred from "./deferred";
-import {randomUuid} from "./util";
-import SeatsioObject from "./seatsioObject";
+import {WebView} from 'react-native-webview'
+import React from 'react'
+import Chart from "./chart"
+import Deferred from "./deferred"
+import {randomUuid} from "./util"
+import SeatsioObject from "./seatsioObject"
 import { ChartRendererConfigOptions, Region } from '@seatsio/seatsio-types'
 
 type SeatingChartProps = ChartRendererConfigOptions & {
@@ -21,15 +21,15 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     private webRef?: any
 
     constructor(props: SeatingChartProps) {
-        super(props);
-        this.divId = 'chart';
+        super(props)
+        this.divId = 'chart'
         this.promises = {}
     }
 
     async componentDidUpdate(prevProps: SeatingChartProps) {
         if (this.didPropsChange(this.props, prevProps)) {
-            this.destroyChart();
-            this.rerenderChart();
+            this.destroyChart()
+            this.rerenderChart()
         }
     }
 
@@ -40,15 +40,15 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     rerenderChart() {
         this.injectJs(
             `chart = new seatsio.SeatingChart(${this.configAsString()}).render();`
-        );
+        )
     }
 
     destroyChart() {
-        this.injectJs('chart.destroy();');
+        this.injectJs('chart.destroy();')
     }
 
     injectJs(js: string) {
-        this.webRef?.injectJavaScript(js + '; true;');
+        this.webRef?.injectJavaScript(js + '; true;')
     }
 
     injectJsAndReturnDeferredFn(js: string, transformer?: (o: any) => any) {
@@ -80,23 +80,23 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
 
     didPropsChange(prevProps: SeatingChartProps, nextProps: SeatingChartProps) {
         if (Object.keys(prevProps).length !== Object.keys(nextProps).length) {
-            return true;
+            return true
         }
 
         const configKeys: (keyof SeatingChartProps)[] = Object.keys(nextProps) as (keyof SeatingChartProps)[]
         return configKeys.some((propName): boolean => {
-            const prevValue = prevProps[propName];
-            const nextValue = nextProps[propName];
+            const prevValue = prevProps[propName]
+            const nextValue = nextProps[propName]
             if (prevValue && nextValue) {
                 if (typeof prevValue === 'function' && typeof nextValue === 'function') {
-                    return prevValue.toString() !== nextValue.toString();
+                    return prevValue.toString() !== nextValue.toString()
                 }
                 if (typeof prevValue === 'object' && typeof nextValue === 'object') {
-                    return this.didPropsChange(prevValue, nextValue);
+                    return this.didPropsChange(prevValue, nextValue)
                 }
             }
-            return prevValue !== nextValue;
-        });
+            return prevValue !== nextValue
+        })
     }
 
     render() {
@@ -109,13 +109,13 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                 onMessage={this.handleMessage.bind(this)}
                 style={{ backgroundColor: 'transparent' }}
             />
-        );
+        )
     }
 
     handleMessage(event: any) {
-        const message = JSON.parse(event.nativeEvent.data);
+        const message = JSON.parse(event.nativeEvent.data)
         if (message.type === 'log') {
-            console.log(message.data);
+            console.log(message.data)
         } else if (message.type === 'onChartRendered') {
             this.props.onChartRendered?.(new Chart(message.data.chart, this.injectJsAndReturnDeferredFn.bind(this)) as any)
         } else if (message.type === 'onObjectClicked') {
@@ -160,9 +160,9 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             const tooltipInfo = this.props.tooltipInfo?.(message.data.object)
             this.injectJs(
                 `resolvePromise(${message.data.promiseId}, "${tooltipInfo}")`
-            );
+            )
         } else {
-            const promise = this.promises[message.type];
+            const promise = this.promises[message.type]
             if (promise !== undefined) {
                 if (message.promiseResult === 'resolve') {
                     promise.resolve?.(message.data)
@@ -200,7 +200,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                 </script>
             </body>
             </html>
-        `;
+        `
     }
 
     registerPostMessage(event: any, callbackParams: any) {
@@ -245,9 +245,9 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             canGASelectionBeIncreased,
             objectCategory,
             ...config
-        } = this.props;
-        config.divId = this.divId;
-        let configString = JSON.stringify(config).slice(0, -1);
+        } = this.props
+        config.divId = this.divId
+        let configString = JSON.stringify(config).slice(0, -1)
         if (onChartRendered) {
             configString += this.registerPostMessage('onChartRendered', ['chart'])
         }
@@ -311,7 +311,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         promises[promiseCounter] = resolve;
                     });
                 }
-            `;
+            `
         }
         if (tooltipInfo) {
             configString += `
@@ -328,7 +328,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         promises[promiseCounter] = resolve;
                     });
                 }
-            `;
+            `
         }
         if (objectColor) {
             configString += `
@@ -336,7 +336,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         ${objectColor.toString()}
                         return objectColor(obj, defaultColor, extraConfig);
                 }
-            `;
+            `
         }
         if (sectionColor) {
             configString += `
@@ -344,7 +344,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         ${sectionColor.toString()}
                         return sectionColor(section, defaultColor, extraConfig);
                 }
-            `;
+            `
         }
         if (objectLabel) {
             configString += `
@@ -352,7 +352,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         ${objectLabel.toString()}
                         return objectLabel(object, defaultLabel, extraConfig);
                 }
-            `;
+            `
         }
         if (objectIcon) {
             configString += `
@@ -360,7 +360,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         ${objectIcon.toString()}
                         return objectIcon(object, defaultIcon, extraConfig);
                 }
-            `;
+            `
         }
         if (isObjectVisible) {
             configString += `
@@ -368,7 +368,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         ${isObjectVisible.toString()}
                         return isObjectVisible(object, extraConfig);
                 }
-            `;
+            `
         }
         if (canGASelectionBeIncreased) {
             configString += `
@@ -376,7 +376,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         ${canGASelectionBeIncreased.toString()}
                         return canGASelectionBeIncreased(gaArea, defaultValue, extraConfig, ticketType);
                 }
-            `;
+            `
         }
         if (objectCategory) {
             configString += `
@@ -384,10 +384,10 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                         ${objectCategory.toString()}
                         return objectCategory(object, categories, defaultCategory, extraConfig);
                 }
-            `;
+            `
         }
-        configString += '}';
-        return configString;
+        configString += '}'
+        return configString
     }
 
     pipeConsoleLog() {
@@ -403,8 +403,8 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             console.info = console.log;
             console.warn = console.log;
             console.error = console.log;
-        `;
+        `
     }
 }
 
-export default SeatsioSeatingChart;
+export default SeatsioSeatingChart

@@ -1,5 +1,5 @@
-import SeatsioObject from "./seatsioObject";
-import { JavaScriptInjectorFunction } from "./SeatsioSeatingChart";
+import SeatsioObject from "./seatsioObject"
+import { JavaScriptInjectorFunction } from "./SeatsioSeatingChart"
 
 export default class Chart {
     private data: any

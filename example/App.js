@@ -1,17 +1,17 @@
-import React from 'react';
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import SimpleSeatingChart from './examples/SimpleSeatingChart';
-import SeatingChartWithMethods from './examples/SeatingChartWithMethods';
-import SeatingChartWithObjectMethods from './examples/SeatingChartWithObjectMethods';
-import ReactToEventsExample from './examples/ReactToEvents';
+import React from 'react'
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import SimpleSeatingChart from './examples/SimpleSeatingChart'
+import SeatingChartWithMethods from './examples/SeatingChartWithMethods'
+import SeatingChartWithObjectMethods from './examples/SeatingChartWithObjectMethods'
+import ReactToEventsExample from './examples/ReactToEvents'
 
 export default class App extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             Component: null,
-        };
+        }
     }
 
     renderExample([Component, title]) {
@@ -19,7 +19,7 @@ export default class App extends React.Component {
             <TouchableOpacity key={title} style={styles.button} onPress={() => this.setState({Component})}>
                 <Text>{title}</Text>
             </TouchableOpacity>
-        );
+        )
     }
 
     renderBackButton() {
@@ -27,11 +27,11 @@ export default class App extends React.Component {
             <TouchableOpacity style={styles.back} onPress={() => this.setState({Component: null})}>
                 <Text style={styles.backButton}>&larr;</Text>
             </TouchableOpacity>
-        );
+        )
     }
 
     renderExamples(examples) {
-        const {Component} = this.state;
+        const {Component} = this.state
 
         return (
             <View style={styles.container}>
@@ -44,7 +44,7 @@ export default class App extends React.Component {
                     </ScrollView>
                 )}
             </View>
-        );
+        )
     }
 
     render() {
@@ -55,7 +55,7 @@ export default class App extends React.Component {
                 [SeatingChartWithObjectMethods, 'call methods on objects'],
                 [ReactToEventsExample, 'React to events']
             ]
-        );
+        )
     }
 }
 
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     backButton: {fontWeight: 'bold', fontSize: 30},
-});
+})

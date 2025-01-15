@@ -6,8 +6,8 @@ export default class Deferred {
     constructor(proxyFn?: (o: any) => any) {
         if (proxyFn) {
             this.promise = new Promise((resolve, reject) => {
-                this.resolve = (o) => resolve(proxyFn(o));
-                this.reject = (o) => reject(proxyFn(o));
+                this.resolve = (o) => resolve(proxyFn(o))
+                this.reject = (o) => reject(proxyFn(o))
             })
         } else {
             this.promise = new Promise((resolve, reject) => {
