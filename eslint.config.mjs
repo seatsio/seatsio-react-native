@@ -8,9 +8,6 @@ export default tseslint.config(
   tseslint.configs.strict,
   tseslint.configs.stylistic,
   {
-    ignores: [
-        './release.mjs'
-    ],
     languageOptions: {
         globals: {
             ...globals.browser,
@@ -21,4 +18,6 @@ export default tseslint.config(
         '@typescript-eslint/no-explicit-any': 'off',
     }
   }
-);
+).concat({
+  ignores: ['release.mjs'],
+})
