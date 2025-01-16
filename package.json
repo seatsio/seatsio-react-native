@@ -2,8 +2,10 @@
   "name": "@seatsio/seatsio-react-native",
   "version": "4.8.0",
   "title": "Seatsio React Native",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
   "description": "The official seats.io react-native wrapper library",
   "repository": {
     "type": "git",
@@ -29,12 +31,13 @@
     "@stylistic/eslint-plugin": "2.13.0",
     "@swc/core": "1.10.7",
     "@tsconfig/react-native": "3.0.5",
-    "@types/jest": "29.5.14",
+    "@types/node": "^22.10.7",
     "@types/react": "19.0.7",
     "@types/react-native": "0.73.0",
     "@types/react-test-renderer": "19.0.0",
     "eslint": "9.18.0",
     "globals": "15.14.0",
+    "react": "18.3.1",
     "react-native-webview": "13.13.1",
     "semver": "7.6.3",
     "tsup": "8.3.5",
@@ -43,14 +46,9 @@
     "zx": "8.3.0"
   },
   "scripts": {
-    "build": "tsup",
+    "build:dev": "rimraf lib && tsup --watch",
+    "build:prod": "rimraf dist && env NODE_ENV=production tsup",
+    "build:watch": "tsup --watch",
     "lint": "eslint"
-  },
-  "tsup": {
-    "entry": ["./index.ts"],
-    "splitting": true,
-    "sourcemap": true,
-    "clean": true,
-    "format": ["cjs", "esm"]
   }
 }

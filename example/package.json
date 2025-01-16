@@ -8,15 +8,19 @@
     "ios": "expo start --ios"
   },
   "dependencies": {
+    "@seatsio/seatsio-react-native": "link:../",
     "expo": "52.0.23",
     "expo-status-bar": "2.0.0",
     "react": "18.3.1",
     "react-native": "0.76.5",
-    "react-native-webview": "13.12.5",
-    "@seatsio/seatsio-react-native": "link:../"
+    "react-native-webview": "13.12.5"
   },
   "devDependencies": {
-    "@babel/core": "7.26.0"
+    "@babel/core": "7.26.0",
+    "@react-native/metro-config": "^0.76.6",
+    "@types/react": "~18.3.12",
+    "react-native-svg-transformer": "^1.5.0",
+    "typescript": "^5.3.3"
   },
   "private": true
 }

@@ -1,5 +1,5 @@
 import {WebView} from 'react-native-webview'
-import React from 'react'
+import * as React from 'react'
 import Chart from './chart'
 import Deferred from './deferred'
 import {randomUuid} from './util'
@@ -102,7 +102,7 @@ class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     render() {
         return (
             <WebView
-                ref={r => (this.webRef = r) as any}
+                ref={(r: any) => (this.webRef = r) as any}
                 originWhitelist={['*']}
                 source={{html: this.html()}}
                 injectedJavaScriptBeforeContentLoaded={this.pipeConsoleLog()}

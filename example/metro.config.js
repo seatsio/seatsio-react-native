@@ -1,28 +1,37 @@
-// metro.config.js
-//
-// with multiple workarounds for this issue with symlinks:
-// https://github.com/facebook/metro/issues/1
-//
-// with thanks to @johnryan (<https://github.com/johnryan>)
-// for the pointers to multiple workaround solutions here:
-// https://github.com/facebook/metro/issues/1#issuecomment-541642857
-//
-// see also this discussion:
-// https://github.com/brodybits/create-react-native-module/issues/232
+/* Metro configuration for React Native
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
 
-const path = require('path')
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
-module.exports = {
-    // workaround for an issue with symlinks encountered starting with
-    // metro@0.55 / React Native 0.61
-    // (not needed with React Native 0.60 / metro@0.54)
-    resolver: {
-        extraNodeModules: new Proxy(
-            {},
-            { get: (_, name) => path.resolve('.', 'node_modules', name) }
-        )
-    },
+const defaultConfig = getDefaultConfig(__dirname);
 
-    // quick workaround for another issue with symlinks
-    watchFolders: [path.resolve('.'), path.resolve('..')]
-}
+const {
+  resolver: { sourceExts, assetExts },
+} = getDefaultConfig(__dirname);
+
+const config = {
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true,
+      },
+    }),
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
+  },
+  resolver: {
+    assetExts: assetExts.filter(ext => ext !== 'svg'),
+    sourceExts: [...sourceExts, 'svg'],
+  },
+  watchFolders: [
+    require('node:path').resolve(__dirname, '.'),
+    require('node:path').resolve(__dirname, '..'),
+    require('node:path').resolve(__dirname, '../lib'),
+    require('node:path').resolve(__dirname, '../lib/components'),
+  ],
+};
+
+module.exports = mergeConfig(defaultConfig, config);
