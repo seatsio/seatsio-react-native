@@ -27,7 +27,10 @@ export default tseslint.config(
     }
 ).concat({
     ignores: [
+        'dist/',
+        'lib/',
         'example/metro.config.js',
-        'release.mjs'
+        'release.mjs',
+        '*.config.ts'
     ],
 })
