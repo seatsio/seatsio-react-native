@@ -14,7 +14,7 @@ type SeatingChartProps = ChartRendererConfigOptions & {
 // Check type for o parameter
 export type JavaScriptInjectorFunction = (js: string, transformer?: (o: any) => any) => Deferred
 
-class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
+export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     private divId: string
     private promises: Record<string, Deferred>
     // TODO: Fix ref type
