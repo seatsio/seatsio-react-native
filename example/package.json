@@ -8,7 +8,7 @@
     "ios": "expo start --ios"
   },
   "dependencies": {
-    "@seatsio/seatsio-react-native": "file:../lib",
+    "@seatsio/seatsio-react-native": "file:../dist",
     "expo": "52.0.23",
     "expo-status-bar": "2.0.0",
     "react": "18.3.1",

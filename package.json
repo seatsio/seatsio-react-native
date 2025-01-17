@@ -45,9 +45,9 @@
     "zx": "8.3.0"
   },
   "scripts": {
-    "build:dev": "rimraf lib && tsup --watch",
-    "build:prod": "rimraf dist && env NODE_ENV=production tsup",
-    "build:watch": "tsup --watch",
+    "start": "rimraf build && tsup --watch",
+    "build": "rimraf build && env NODE_ENV=production tsup",
     "lint": "eslint"
-  }
+  },
+  "files": ["dist"]
 }

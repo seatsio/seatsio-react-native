@@ -27,10 +27,7 @@ const config = {
     sourceExts: [...sourceExts, 'svg'],
   },
   watchFolders: [
-    require('node:path').resolve(__dirname, '.'),
-    require('node:path').resolve(__dirname, '..'),
-    require('node:path').resolve(__dirname, '../lib'),
-    require('node:path').resolve(__dirname, '../lib/components'),
+    require('node:path').resolve(__dirname, '../dist'),
   ],
 };
 

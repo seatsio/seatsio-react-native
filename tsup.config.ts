@@ -1,19 +1,20 @@
-import type { Options } from 'tsup';
+import type { Options } from 'tsup'
 
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV
+const isProd = env === 'production'
 
 export const tsup: Options = {
   splitting: false,
-  sourcemap: env === 'prod',
+  sourcemap: false,
   clean: true,
   dts: true,
   format: ['esm'],
-  minify: env === 'production',
-  bundle: env === 'production',
+  minify: false,
+  bundle: false,
   skipNodeModulesBundle: true,
   entryPoints: ['index.ts'],
   watch: env === 'development',
   target: 'es2020',
-  outDir: env === 'production' ? 'dist' : 'lib',
+  outDir: 'dist',
   entry: ['index.ts', 'components/*.(ts|tsx)'],
 }

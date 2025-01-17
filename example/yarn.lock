@@ -1983,7 +1983,7 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
-"@seatsio/seatsio-react-native@file:../lib":
+"@seatsio/seatsio-react-native@file:../build":
   version "0.0.0"
 
 "@segment/loosely-validate-event@^2.0.0":
