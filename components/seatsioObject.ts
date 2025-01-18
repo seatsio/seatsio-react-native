@@ -1,11 +1,11 @@
-import { InteractiveObject, SeatingChart } from '@seatsio/seatsio-types'
+import { Dict, InteractiveObject, SeatingChart } from '@seatsio/seatsio-types'
 import { JavaScriptInjectorFunction } from './SeatsioSeatingChart'
 
 export interface ObjectData {
     category: string
-    center: any
+    center: { x: number, y: number }
     chart: SeatingChart
-    dataPerEvent: any
+    dataPerEvent: Dict<object>
     disabledBySocialDistancingRules: boolean
     forSale: boolean
     id: string
@@ -14,7 +14,7 @@ export interface ObjectData {
     label: string
     objectType: string
     labels: InteractiveObject['labels']
-    parent: any
+    parent: SeatsioObject | null
     seatId: string
     selectable: boolean
     selected: boolean
@@ -24,9 +24,9 @@ export interface ObjectData {
 
 export default class SeatsioObject implements ObjectData {
     public category: string
-    public center: any
+    public center: { x: number, y: number }
     public chart: SeatingChart
-    public dataPerEvent: any
+    public dataPerEvent: Dict<object>
     public disabledBySocialDistancingRules: boolean
     public forSale: boolean
     public id: string
@@ -35,7 +35,7 @@ export default class SeatsioObject implements ObjectData {
     public label: string
     public objectType: string
     public labels: InteractiveObject['labels']
-    public parent: any
+    public parent: SeatsioObject | null
     public seatId: string
     public selectable: boolean
     public selected: boolean
