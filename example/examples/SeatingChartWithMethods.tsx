@@ -1,9 +1,10 @@
 import React from 'react'
 import {ScrollView, StyleSheet, Text, View, Button} from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
+import { SeatingChart } from '@seatsio/seatsio-types'
 
 class SimpleSeatingChartWithChangeConfig extends React.Component {
-
+    private chart: SeatingChart
     render() {
         return (
             <View style={this.styles.container}>
@@ -21,14 +22,14 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                     </View>
 
                     <View>
-                        <Button title={'getHoldToken()'} onPress={() => this.chart.getHoldToken().then(holdToken => alert(holdToken))}/>
+                        <Button title={'getHoldToken()'} onPress={() => (this.chart as any).getHoldToken().then(holdToken => alert(holdToken))}/>
 
                         <Button title={'resetView()'} onPress={() => this.chart.resetView()}/>
                         <Button title={'startNewSession()'} onPress={() => this.chart.startNewSession()}/>
                         <Button title={'listSelectedObjects()'} onPress={() => this.chart.listSelectedObjects().then(objects => alert(objects.map(o => o.label).join(', ')))} />
                         <Button title={'clearSelection()'} onPress={() => this.chart.clearSelection()}/>
 
-                        <Button title={'selectObjects([\'A-1\', \'A-2\'])'} onPress={() => this.chart.selectObjects(['A-1', 'A-2'])}/>
+                        <Button title={'selectObjects([\'A-1\', \'A-2\'])'} onPress={() => (this.chart as any).selectObjects(['A-1', 'A-2'])}/>
                         <Button title={'deselectObjects([\'A-1\', \'A-2\'])'} onPress={() => this.chart.deselectObjects(['A-1', 'A-2'])}/>
 
                         <Button title={'selectCategories([\'3\'])'} onPress={() => this.chart.selectCategories(['3'])}/>
@@ -38,7 +39,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                             title="changeConfig()"
                             onPress={() => {
                                 this.chart.changeConfig({
-                                    objectColor: object => object.isSelectable() ? 'green' : 'red',
+                                    objectColor: object => (object as any).isSelectable() ? 'green' : 'red',
                                     objectLabel: () => 'x',
                                     numberOfPlacesToSelect: 5
                                 })
@@ -56,7 +57,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
 
                         <Button title={'zoomToSelectedObjects()'} onPress={() => this.chart.zoomToSelectedObjects().then(() => console.log('zooming done'))}/>
                         <Button title={'zoomToFilteredCategories()'} onPress={() => this.chart.zoomToFilteredCategories().then(() => console.log('zooming done'))}/>
-                        <Button title={'zoomToSection()'} onPress={() => this.chart.zoomToSection('Circle T').then(() => console.log('zooming done'))}/>
+                        <Button title={'zoomToSection()'} onPress={() => this.chart.zoomToSection('Circle T')}/>
 
                     </View>
                 </ScrollView>

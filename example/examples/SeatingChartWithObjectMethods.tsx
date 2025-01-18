@@ -1,9 +1,10 @@
 import React from 'react'
 import {Button, ScrollView, StyleSheet, Text, View} from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
+import { BookableObject, Seat, SeatingChart } from '@seatsio/seatsio-types'
 
 class SimpleSeatingChartWithChangeConfig extends React.Component {
-
+    private chart: SeatingChart
     render() {
         return (
             <View style={this.styles.container}>
@@ -32,7 +33,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                     </View>
                     <Button title={'Log object properties'} onPress={() =>
                         this.chart.findObject('A-1')
-                            .then((o) => o.isInChannel('1c0df13b-ecab-e55c-8fc9-799779ba18e7'))
+                            .then((o: BookableObject) => o.isInChannel('1c0df13b-ecab-e55c-8fc9-799779ba18e7'))
                             .then(isInChannel => console.log('in channel: ' + isInChannel))
                     }/>
                     <Button title={'Select A-1 (adult)'} onPress={() =>
@@ -57,11 +58,11 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                     }/>
                     <Button title={'Pulse A-1'} onPress={() =>
                         this.chart.findObject('A-1')
-                            .then((o) => o.pulse())
+                            .then((o: Seat) => o.pulse())
                     }/>
                     <Button title={'Unpulse A-1'} onPress={() =>
                         this.chart.findObject('A-1')
-                            .then((o) => o.unpulse())
+                            .then((o: Seat) => o.unpulse())
                     }/>
                     <View>
 
