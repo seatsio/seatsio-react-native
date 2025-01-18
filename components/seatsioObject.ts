@@ -1,7 +1,7 @@
 import { InteractiveObject, SeatingChart } from '@seatsio/seatsio-types'
 import { JavaScriptInjectorFunction } from './SeatsioSeatingChart'
 
-interface ObjectData {
+export interface ObjectData {
     category: string
     center: any
     chart: SeatingChart
@@ -22,7 +22,7 @@ interface ObjectData {
     uuid: string
 }
 
-export default class SeatsioObject {
+export default class SeatsioObject implements ObjectData {
     public category: string
     public center: any
     public chart: SeatingChart

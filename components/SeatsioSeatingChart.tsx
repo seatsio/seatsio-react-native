@@ -3,7 +3,7 @@ import * as React from 'react'
 import Chart from './chart'
 import Deferred from './deferred'
 import {randomUuid} from './util'
-import SeatsioObject from './seatsioObject'
+import SeatsioObject, { ObjectData } from './seatsioObject'
 import { ChartRendererConfigOptions, Region } from '@seatsio/seatsio-types'
 
 type SeatingChartProps = ChartRendererConfigOptions & {
@@ -12,13 +12,14 @@ type SeatingChartProps = ChartRendererConfigOptions & {
 }
 
 // Check type for o parameter
-export type JavaScriptInjectorFunction = (js: string, transformer?: (o: any) => any) => Deferred
+type TransformerFunction = (o: ObjectData) => SeatsioObject
+export type JavaScriptInjectorFunction = (js: string, transformer?: TransformerFunction) => Deferred
+
 
 export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     private divId: string
     private promises: Record<string, Deferred>
-    // TODO: Fix ref type
-    private webRef?: any
+    private webRef?: WebView | null
 
     constructor(props: SeatingChartProps) {
         super(props)
@@ -51,7 +52,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         this.webRef?.injectJavaScript(js + '; true;')
     }
 
-    injectJsAndReturnDeferredFn(js: string, transformer?: (o: any) => any) {
+    injectJsAndReturnDeferredFn(js: string, transformer?: TransformerFunction) {
         const deferred = new Deferred(transformer)
         const uuid = randomUuid()
         this.registerPromise(uuid, deferred)
@@ -102,7 +103,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     render() {
         return (
             <WebView
-                ref={(r: any) => (this.webRef = r) as any}
+                ref={r => { this.webRef = r }}
                 originWhitelist={['*']}
                 source={{html: this.html()}}
                 injectedJavaScriptBeforeContentLoaded={this.pipeConsoleLog()}
@@ -141,7 +142,6 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         } else if (message.type === 'onSelectionValid') {
             this.props.onSelectionValid?.()
         } else if (message.type === 'onSelectionInvalid') {
-            // FIXME: What should the property on message.data be?
             this.props.onSelectionInvalid?.(message.data.violations)
         } else if (message.type === 'onFullScreenOpened') {
             this.props.onFullScreenOpened?.()
@@ -203,8 +203,8 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         `
     }
 
-    registerPostMessage(event: any, callbackParams: any) {
-        const data = callbackParams.map((param: any) => param + ': ' + param).join(', ')
+    registerPostMessage(event: string, callbackParams: string[]) {
+        const data = callbackParams.map(param => param + ': ' + param).join(', ')
         return `
                 , "${event}": (${callbackParams.join(', ')}) => {
                     window.ReactNativeWebView.postMessage(JSON.stringify({
