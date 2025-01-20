@@ -33,12 +33,10 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
                             <Button title={'startNewSession()'} onPress={() => chart.startNewSession()}/>
                             <Button title={'listSelectedObjects()'} onPress={() => chart.listSelectedObjects().then(objects => Alert.alert(objects.map(o => o.label).join(', ')))} />
                             <Button title={'clearSelection()'} onPress={() => chart.clearSelection()}/>
-
-                            <Button title={'selectObjects([\'A-1\', \'A-2\'])'} onPress={() => (chart as any).selectObjects(['A-1', 'A-2'])}/>
-                            <Button title={'deselectObjects([\'A-1\', \'A-2\'])'} onPress={() => chart.deselectObjects(['A-1', 'A-2'])}/>
-
-                            <Button title={'selectCategories([\'3\'])'} onPress={() => chart.selectCategories(['3'])}/>
-                            <Button title={'deselectCategories([\'3\'])'} onPress={() => chart.deselectCategories(['3'])}/>
+                            <Button title={'selectObjects([\'Arena-1-11, \'Arena-1-12\'])'} onPress={() => (chart as any).selectObjects(['Arena-1-15', 'Arena-1-16']) }/>
+                            <Button title={'deselectObjects([\'Arena-1-11\', \'Arena-1-12\'])'} onPress={() => chart.deselectObjects(['Arena-1-11', 'Arena-1-12'])}/>
+                            <Button title={'selectCategories([\'35\'])'} onPress={() => chart.selectCategories(['35'])}/>
+                            <Button title={'deselectCategories([\'35\'])'} onPress={() => chart.deselectCategories(['35'])}/>
 
                             <Button
                                 title="changeConfig()"
@@ -51,8 +49,8 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
                                 }}
                             />
 
-                            <Button title={'findObject(\'A-1\')'} onPress={() => {
-                                chart.findObject('A-1').then(object => Alert.alert('object found: ' + object.label))
+                            <Button title={'findObject(\'Arena-1-11\')'} onPress={() => {
+                                chart.findObject('Arena-1-11').then(object => Alert.alert('object found: ' + object.label))
                             }}/>
                             <Button title={'findObject(\'A-111\')'} onPress={() => {
                                 chart.findObject('A-111').catch(() => Alert.alert('object not found!'))
