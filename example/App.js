@@ -1,5 +1,5 @@
 import React from 'react'
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import SimpleSeatingChart from './examples/SimpleSeatingChart'
 import SeatingChartWithMethods from './examples/SeatingChartWithMethods'
 import SeatingChartWithObjectMethods from './examples/SeatingChartWithObjectMethods'
@@ -16,7 +16,7 @@ export default class App extends React.Component {
 
     renderExample([Component, title]) {
         return (
-            <TouchableOpacity key={title} style={styles.button} onPress={() => this.setState({Component})}>
+            <TouchableOpacity key={title} style={styles.button} onPress={() => this.setState({ Component })}>
                 <Text>{title}</Text>
             </TouchableOpacity>
         )
@@ -24,14 +24,14 @@ export default class App extends React.Component {
 
     renderBackButton() {
         return (
-            <TouchableOpacity style={styles.back} onPress={() => this.setState({Component: null})}>
+            <TouchableOpacity style={styles.back} onPress={() => this.setState({ Component: null })}>
                 <Text style={styles.backButton}>&larr;</Text>
             </TouchableOpacity>
         )
     }
 
     renderExamples(examples) {
-        const {Component} = this.state
+        const { Component } = this.state
 
         return (
             <View style={styles.container}>
@@ -88,5 +88,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    backButton: {fontWeight: 'bold', fontSize: 30},
+    backButton: { fontWeight: 'bold', fontSize: 30 },
 })

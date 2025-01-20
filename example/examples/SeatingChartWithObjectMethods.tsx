@@ -3,7 +3,7 @@ import { SeatingChart, SelectableObject } from '@seatsio/seatsio-types'
 import React from 'react'
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
-class SimpleSeatingChartWithChangeConfig extends React.Component<{}, {chart?: SeatingChart}> {
+class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: SeatingChart }> {
     constructor(props: {}) {
         super(props)
         this.state = {}
@@ -20,18 +20,18 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, {chart?: Se
                             region="eu"
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
-                            onChartRendered={(chart) => this.setState({chart})}
+                            onChartRendered={(chart) => this.setState({ chart })}
                             pricing={[
-                                {'category': 1, 'ticketTypes': [
-                                    {'ticketType': 'adult', 'price': 30},
-                                    {'ticketType': 'child', 'price': 20}
-                                ]},
-                                {'category': 2, 'ticketTypes': [
-                                    {'ticketType': 'adult', 'price': 40},
-                                    {'ticketType': 'child', 'price': 30},
-                                    {'ticketType': '65+', 'price': 25}
-                                ]},
-                                {'category': 3, 'price': 50}
+                                { 'category': 1, 'ticketTypes': [
+                                    { 'ticketType': 'adult', 'price': 30 },
+                                    { 'ticketType': 'child', 'price': 20 }
+                                ] },
+                                { 'category': 2, 'ticketTypes': [
+                                    { 'ticketType': 'adult', 'price': 40 },
+                                    { 'ticketType': 'child', 'price': 30 },
+                                    { 'ticketType': '65+', 'price': 25 }
+                                ] },
+                                { 'category': 3, 'price': 50 }
                             ]}
                         />
 
