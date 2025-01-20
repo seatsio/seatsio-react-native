@@ -1,7 +1,7 @@
-import React from 'react'
-import {Button, ScrollView, StyleSheet, Text, View} from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
-import { BookableObject, Seat, SeatingChart, SelectableObject } from '@seatsio/seatsio-types'
+import { SeatingChart, SelectableObject } from '@seatsio/seatsio-types'
+import React from 'react'
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 class SimpleSeatingChartWithChangeConfig extends React.Component<{}, {chart?: SeatingChart}> {
     constructor(props: {}) {
