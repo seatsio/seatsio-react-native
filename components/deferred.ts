@@ -3,7 +3,7 @@ export default class Deferred {
     public resolve!: (o: any) => any
     public reject!: (o: any) => any
 
-    constructor(proxyFn?: (o: any) => any) {
+    constructor (proxyFn?: (o: any) => any) {
         if (proxyFn) {
             this.promise = new Promise((resolve, reject) => {
                 this.resolve = (o) => resolve(proxyFn(o))
@@ -17,11 +17,11 @@ export default class Deferred {
         }
     }
 
-    then(fn: () => any) {
+    then (fn: () => any) {
         return this.promise.then(fn)
     }
 
-    catch(fn: () => any) {
+    catch (fn: () => any) {
         return this.promise.catch(fn)
     }
 }

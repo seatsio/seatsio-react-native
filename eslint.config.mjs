@@ -20,11 +20,12 @@ export default tseslint.config(
         },
         rules: {
             '@stylistic/indent': ['error', 4],
-            '@stylistic/semi': ['error', 'never'],
-            '@stylistic/quotes': ['error', 'single'],
-            '@typescript-eslint/no-explicit-any': 'off',
-            '@typescript-eslint/no-empty-object-type': 'off',
             '@stylistic/object-curly-spacing': ['error', 'always'],
+            '@stylistic/quotes': ['error', 'single'],
+            '@stylistic/semi': ['error', 'never'],
+            '@stylistic/space-before-function-paren': ['error', 'always'],
+            '@typescript-eslint/no-empty-object-type': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
         },
     }
 ).concat({

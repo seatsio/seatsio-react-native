@@ -4,7 +4,7 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 
 class SimpleSeatingChart extends React.Component {
 
-    render() {
+    render () {
         return (
             <View style={this.styles.container}>
                 <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>

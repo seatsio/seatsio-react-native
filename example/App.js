@@ -7,14 +7,14 @@ import ReactToEventsExample from './examples/ReactToEvents'
 
 export default class App extends React.Component {
 
-    constructor(props) {
+    constructor (props) {
         super(props)
         this.state = {
             Component: null,
         }
     }
 
-    renderExample([Component, title]) {
+    renderExample ([Component, title]) {
         return (
             <TouchableOpacity key={title} style={styles.button} onPress={() => this.setState({ Component })}>
                 <Text>{title}</Text>
@@ -22,7 +22,7 @@ export default class App extends React.Component {
         )
     }
 
-    renderBackButton() {
+    renderBackButton () {
         return (
             <TouchableOpacity style={styles.back} onPress={() => this.setState({ Component: null })}>
                 <Text style={styles.backButton}>&larr;</Text>
@@ -30,7 +30,7 @@ export default class App extends React.Component {
         )
     }
 
-    renderExamples(examples) {
+    renderExamples (examples) {
         const { Component } = this.state
 
         return (
@@ -47,7 +47,7 @@ export default class App extends React.Component {
         )
     }
 
-    render() {
+    render () {
         return this.renderExamples(
             [
                 [SimpleSeatingChart, 'Simple seating chart'],

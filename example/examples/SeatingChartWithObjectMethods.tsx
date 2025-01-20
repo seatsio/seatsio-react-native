@@ -4,12 +4,12 @@ import React from 'react'
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: SeatingChart }> {
-    constructor(props: {}) {
+    constructor (props: {}) {
         super(props)
         this.state = {}
     }
 
-    render() {
+    render () {
         const { chart } = this.state
         return (
             <View style={this.styles.container}>

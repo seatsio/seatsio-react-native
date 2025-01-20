@@ -5,7 +5,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
 
 class ReactToEventsExample extends React.Component {
-    render() {
+    render () {
         return (
             <View style={this.styles.container}>
                 <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>

@@ -21,38 +21,38 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     private promises: Record<string, Deferred>
     private webRef?: WebView | null
 
-    constructor(props: SeatingChartProps) {
+    constructor (props: SeatingChartProps) {
         super(props)
         this.divId = 'chart'
         this.promises = {}
     }
 
-    async componentDidUpdate(prevProps: SeatingChartProps) {
+    async componentDidUpdate (prevProps: SeatingChartProps) {
         if (this.didPropsChange(this.props, prevProps)) {
             this.destroyChart()
             this.rerenderChart()
         }
     }
 
-    private getChartJsUrl() {
+    private getChartJsUrl () {
         return (this.props.chartJsUrl || 'https://cdn-{region}.seatsio.net/chart.js').replace('{region}', this.props.region)
     }
 
-    rerenderChart() {
+    rerenderChart () {
         this.injectJs(
             `chart = new seatsio.SeatingChart(${this.configAsString()}).render();`
         )
     }
 
-    destroyChart() {
+    destroyChart () {
         this.injectJs('chart.destroy();')
     }
 
-    injectJs(js: string) {
+    injectJs (js: string) {
         this.webRef?.injectJavaScript(js + '; true;')
     }
 
-    injectJsAndReturnDeferredFn(js: string, transformer?: TransformerFunction) {
+    injectJsAndReturnDeferredFn (js: string, transformer?: TransformerFunction) {
         const deferred = new Deferred(transformer)
         const uuid = randomUuid()
         this.registerPromise(uuid, deferred)
@@ -75,11 +75,11 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         return deferred
     }
 
-    registerPromise(name: string, promise: Deferred) {
+    registerPromise (name: string, promise: Deferred) {
         this.promises[name] = promise
     }
 
-    didPropsChange(prevProps: SeatingChartProps, nextProps: SeatingChartProps) {
+    didPropsChange (prevProps: SeatingChartProps, nextProps: SeatingChartProps) {
         if (Object.keys(prevProps).length !== Object.keys(nextProps).length) {
             return true
         }
@@ -100,7 +100,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         })
     }
 
-    render() {
+    render () {
         return (
             <WebView
                 ref={r => { this.webRef = r }}
@@ -113,7 +113,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         )
     }
 
-    handleMessage(event: any) {
+    handleMessage (event: any) {
         const message = JSON.parse(event.nativeEvent.data)
         if (message.type === 'log') {
             console.log(message.data)
@@ -173,7 +173,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         }
     }
 
-    html() {
+    html () {
         return `
             <html lang="en">
             <head>
@@ -203,7 +203,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         `
     }
 
-    registerPostMessage(event: string, callbackParams: string[]) {
+    registerPostMessage (event: string, callbackParams: string[]) {
         const data = callbackParams.map(param => param + ': ' + param).join(', ')
         return `
                 , "${event}": (${callbackParams.join(', ')}) => {
@@ -217,7 +217,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             `
     }
 
-    configAsString() {
+    configAsString () {
         const {
             onChartRendered,
             onObjectClicked,
@@ -390,7 +390,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         return configString
     }
 
-    pipeConsoleLog() {
+    pipeConsoleLog () {
         return `
             console = new Object();
             console.log = function(log) {

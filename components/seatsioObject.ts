@@ -44,7 +44,7 @@ export default class SeatsioObject implements ObjectData {
 
     private injectJsFn: JavaScriptInjectorFunction
 
-    constructor(data: ObjectData, injectJsFn: JavaScriptInjectorFunction) {
+    constructor (data: ObjectData, injectJsFn: JavaScriptInjectorFunction) {
         this.category = data.category
         this.center = data.center
         this.chart = data.chart
@@ -66,23 +66,23 @@ export default class SeatsioObject implements ObjectData {
         this.injectJsFn = injectJsFn
     }
 
-    async isInChannel(channelKey: string) {
+    async isInChannel (channelKey: string) {
         return this.injectJsFn(`chart.findObject(${JSON.stringify(this.id)}).then(o => o.isInChannel(${JSON.stringify(channelKey)}))`)
     }
 
-    async select(ticketType: string) {
+    async select (ticketType: string) {
         return this.injectJsFn(`chart.findObject(${JSON.stringify(this.id)}).then(o => o.select(${JSON.stringify(ticketType)}))`)
     }
 
-    async deselect(ticketType: string) {
+    async deselect (ticketType: string) {
         return this.injectJsFn(`chart.findObject(${JSON.stringify(this.id)}).then(o => o.deselect(${JSON.stringify(ticketType)}))`)
     }
 
-    async pulse() {
+    async pulse () {
         return this.injectJsFn(`chart.findObject(${JSON.stringify(this.id)}).then(o => o.pulse())`)
     }
 
-    async unpulse() {
+    async unpulse () {
         return this.injectJsFn(`chart.findObject(${JSON.stringify(this.id)}).then(o => o.unpulse())`)
     }
 
