@@ -1,9 +1,14 @@
-import React from 'react'
-import {ScrollView, StyleSheet, Text, View, Button} from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 import { SeatingChart } from '@seatsio/seatsio-types'
+import React from 'react'
+import { Alert, Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: SeatingChart }> {
+    constructor(props: {}) {
+        super(props)
+        this.state = {}
+    }
+
     render() {
         const { chart } = this.state
         return (
@@ -22,11 +27,11 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
                     </View>
                     { chart && (
                         <View>
-                            <Button title={'getHoldToken()'} onPress={() => (chart as any).getHoldToken().then((holdToken: string) => alert(holdToken))}/>
+                            <Button title={'getHoldToken()'} onPress={() => (chart as any).getHoldToken().then((holdToken: string) => Alert.alert(holdToken))}/>
 
                             <Button title={'resetView()'} onPress={() => chart.resetView()}/>
                             <Button title={'startNewSession()'} onPress={() => chart.startNewSession()}/>
-                            <Button title={'listSelectedObjects()'} onPress={() => chart.listSelectedObjects().then(objects => alert(objects.map(o => o.label).join(', ')))} />
+                            <Button title={'listSelectedObjects()'} onPress={() => chart.listSelectedObjects().then(objects => Alert.alert(objects.map(o => o.label).join(', ')))} />
                             <Button title={'clearSelection()'} onPress={() => chart.clearSelection()}/>
 
                             <Button title={'selectObjects([\'A-1\', \'A-2\'])'} onPress={() => (chart as any).selectObjects(['A-1', 'A-2'])}/>
@@ -47,10 +52,10 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
                             />
 
                             <Button title={'findObject(\'A-1\')'} onPress={() => {
-                                chart.findObject('A-1').then(object => alert('object found: ' + object.label))
+                                chart.findObject('A-1').then(object => Alert.alert('object found: ' + object.label))
                             }}/>
                             <Button title={'findObject(\'A-111\')'} onPress={() => {
-                                chart.findObject('A-111').catch(() => alert('object not found!'))
+                                chart.findObject('A-111').catch(() => Alert.alert('object not found!'))
                             }}/>
 
                             <Button title={'listCategories()'} onPress={() => chart.listCategories().then(categories => console.log(categories))}/>

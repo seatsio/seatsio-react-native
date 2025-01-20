@@ -4,6 +4,11 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 import { BookableObject, Seat, SeatingChart, SelectableObject } from '@seatsio/seatsio-types'
 
 class SimpleSeatingChartWithChangeConfig extends React.Component<{}, {chart?: SeatingChart}> {
+    constructor(props: {}) {
+        super(props)
+        this.state = {}
+    }
+
     render() {
         const { chart } = this.state
         return (

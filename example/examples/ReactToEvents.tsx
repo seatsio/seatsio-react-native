@@ -5,7 +5,6 @@ import { Seat, SelectableObject, TicketTypeJson } from '@seatsio/seatsio-types'
 
 
 class ReactToEventsExample extends React.Component {
-
     render() {
         return (
             <View style={this.styles.container}>
