@@ -30,7 +30,12 @@
       "favicon": "./assets/favicon.png"
     },
     "expo": {
-      "newArchEnabled": true
+      "ios": {
+        "newArchEnabled": true
+      },
+      "android": {
+        "newArchEnabled": true
+      }
     }
   }
 }
