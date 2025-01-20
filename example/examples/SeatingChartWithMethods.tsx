@@ -33,7 +33,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
                             <Button title={'startNewSession()'} onPress={() => chart.startNewSession()}/>
                             <Button title={'listSelectedObjects()'} onPress={() => chart.listSelectedObjects().then(objects => Alert.alert(objects.map(o => o.label).join(', ')))} />
                             <Button title={'clearSelection()'} onPress={() => chart.clearSelection()}/>
-                            <Button title={'selectObjects([\'Arena-1-11, \'Arena-1-12\'])'} onPress={() => (chart as any).selectObjects(['Arena-1-15', 'Arena-1-16']) }/>
+                            <Button title={'selectObjects([\'Arena-1-11, \'Arena-1-12\'])'} onPress={() => (chart as any).selectObjects(['Arena-1-11', 'Arena-1-12']) }/>
                             <Button title={'deselectObjects([\'Arena-1-11\', \'Arena-1-12\'])'} onPress={() => chart.deselectObjects(['Arena-1-11', 'Arena-1-12'])}/>
                             <Button title={'selectCategories([\'35\'])'} onPress={() => chart.selectCategories(['35'])}/>
                             <Button title={'deselectCategories([\'35\'])'} onPress={() => chart.deselectCategories(['35'])}/>
