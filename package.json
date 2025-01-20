@@ -47,7 +47,8 @@
   "scripts": {
     "start": "tsup --watch",
     "build": "env NODE_ENV=production tsup",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "files": ["dist"]
 }
