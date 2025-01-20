@@ -1,7 +1,8 @@
 import React from 'react'
 import {StyleSheet, View, Text, ScrollView} from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
-import { Seat } from '@seatsio/seatsio-types'
+import { Seat, SelectableObject, TicketTypeJson } from '@seatsio/seatsio-types'
+
 
 class ReactToEventsExample extends React.Component {
 
@@ -16,8 +17,8 @@ class ReactToEventsExample extends React.Component {
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
                             session={'start'}
-                            onObjectSelected={(o: Seat) => o.pulse()}
-                            onObjectDeselected={(o: Seat) => o.unpulse()}
+                            onObjectSelected={(o: SelectableObject) => (o as any).pulse?.()}
+                            onObjectDeselected={(o: SelectableObject, _selectedTicketType: TicketTypeJson) => (o as any).unpulse?.()}
                             onObjectClicked={o => console.log('object clicked: ' + o.label)}
                             onSelectedObjectBooked={o => console.log('You selected ' + o.label + ' but it became unavailable in the meantime')}
                             onSessionInitialized={holdToken => console.log('new token: ' + holdToken.token)}

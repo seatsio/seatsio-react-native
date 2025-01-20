@@ -1,11 +1,11 @@
 import React from 'react'
 import {Button, ScrollView, StyleSheet, Text, View} from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
-import { BookableObject, Seat, SeatingChart } from '@seatsio/seatsio-types'
+import { BookableObject, Seat, SeatingChart, SelectableObject } from '@seatsio/seatsio-types'
 
-class SimpleSeatingChartWithChangeConfig extends React.Component {
-    private chart: SeatingChart
+class SimpleSeatingChartWithChangeConfig extends React.Component<{}, {chart?: SeatingChart}> {
     render() {
+        const { chart } = this.state
         return (
             <View style={this.styles.container}>
                 <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
@@ -15,7 +15,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                             region="eu"
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
-                            onChartRendered={(chart) => this.chart = chart}
+                            onChartRendered={(chart) => this.setState({chart})}
                             pricing={[
                                 {'category': 1, 'ticketTypes': [
                                     {'ticketType': 'adult', 'price': 30},
@@ -31,39 +31,43 @@ class SimpleSeatingChartWithChangeConfig extends React.Component {
                         />
 
                     </View>
-                    <Button title={'Log object properties'} onPress={() =>
-                        this.chart.findObject('A-1')
-                            .then((o: BookableObject) => o.isInChannel('1c0df13b-ecab-e55c-8fc9-799779ba18e7'))
-                            .then(isInChannel => console.log('in channel: ' + isInChannel))
-                    }/>
-                    <Button title={'Select A-1 (adult)'} onPress={() =>
-                        this.chart.findObject('A-1')
-                            .then((o) => o.select('adult'))
-                            .then(() => console.log('seat A-1 selected!'))
-                    }/>
-                    <Button title={'Select A-1 (no ticket type)'} onPress={() =>
-                        this.chart.findObject('A-1')
-                            .then((o) => o.select())
-                            .then(() => console.log('seat A-1 selected!'))
-                    }/>
-                    <Button title={'Deselect A-1 (adult)'} onPress={() =>
-                        this.chart.findObject('A-1')
-                            .then((o) => o.deselect('adult'))
-                            .then(() => console.log('seat A-1 deselected!'))
-                    }/>
-                    <Button title={'Deselect A-1 (no ticket type)'} onPress={() =>
-                        this.chart.findObject('A-1')
-                            .then((o) => o.deselect())
-                            .then(() => console.log('seat A-1 deselected!'))
-                    }/>
-                    <Button title={'Pulse A-1'} onPress={() =>
-                        this.chart.findObject('A-1')
-                            .then((o: Seat) => o.pulse())
-                    }/>
-                    <Button title={'Unpulse A-1'} onPress={() =>
-                        this.chart.findObject('A-1')
-                            .then((o: Seat) => o.unpulse())
-                    }/>
+                    { chart && (
+                        <>
+                            <Button title={'Log object properties'} onPress={() =>
+                                chart.findObject('A-1')
+                                    .then((o: SelectableObject) => (o as any).isInChannel?.('1c0df13b-ecab-e55c-8fc9-799779ba18e7'))
+                                    .then(isInChannel => console.log('in channel: ' + isInChannel))
+                            }/>
+                            <Button title={'Select A-1 (adult)'} onPress={() =>
+                                chart.findObject('A-1')
+                                    .then((o) => o.select('adult'))
+                                    .then(() => console.log('seat A-1 selected!'))
+                            }/>
+                            <Button title={'Select A-1 (no ticket type)'} onPress={() =>
+                                chart.findObject('A-1')
+                                    .then((o) => o.select())
+                                    .then(() => console.log('seat A-1 selected!'))
+                            }/>
+                            <Button title={'Deselect A-1 (adult)'} onPress={() =>
+                                chart.findObject('A-1')
+                                    .then((o) => o.deselect('adult'))
+                                    .then(() => console.log('seat A-1 deselected!'))
+                            }/>
+                            <Button title={'Deselect A-1 (no ticket type)'} onPress={() =>
+                                chart.findObject('A-1')
+                                    .then((o) => o.deselect())
+                                    .then(() => console.log('seat A-1 deselected!'))
+                            }/>
+                            <Button title={'Pulse A-1'} onPress={() =>
+                                chart.findObject('A-1')
+                                    .then((o: SelectableObject) => (o as any).pulse?.())
+                            }/>
+                            <Button title={'Unpulse A-1'} onPress={() =>
+                                chart.findObject('A-1')
+                                    .then((o: SelectableObject) => (o as any).unpulse?.())
+                            }/>
+                        </>
+                    )}
                     <View>
 
                     </View>
