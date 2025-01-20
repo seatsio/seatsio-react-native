@@ -77,6 +77,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
             ...StyleSheet.absoluteFillObject,
             justifyContent: 'flex-end',
             alignItems: 'center',
+            marginTop: 10,
         },
         scrollview: {
             alignItems: 'center',

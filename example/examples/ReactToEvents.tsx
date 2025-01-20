@@ -44,6 +44,7 @@ class ReactToEventsExample extends React.Component {
             ...StyleSheet.absoluteFillObject,
             justifyContent: 'flex-end',
             alignItems: 'center',
+            marginTop: 10,
         },
         scrollview: {
             alignItems: 'center',
