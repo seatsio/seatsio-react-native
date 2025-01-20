@@ -2,8 +2,8 @@
   "name": "@seatsio/seatsio-react-native",
   "version": "4.8.0",
   "title": "Seatsio React Native",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "description": "The official seats.io react-native wrapper library",
   "repository": {
@@ -45,8 +45,8 @@
     "zx": "8.3.0"
   },
   "scripts": {
-    "start": "rimraf build && tsup --watch",
-    "build": "rimraf build && env NODE_ENV=production tsup",
+    "start": "tsup --watch",
+    "build": "env NODE_ENV=production tsup",
     "lint": "eslint"
   },
   "files": ["dist"]
