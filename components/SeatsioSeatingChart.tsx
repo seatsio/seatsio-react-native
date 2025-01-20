@@ -11,7 +11,6 @@ type SeatingChartProps = ChartRendererConfigOptions & {
     region: Region
 }
 
-// Check type for o parameter
 export type TransformerFunction = (o: ObjectData) => SeatsioObject
 export type JavaScriptInjectorFunction = (js: string, transformer?: TransformerFunction) => Deferred
 
