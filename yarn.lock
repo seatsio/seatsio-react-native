@@ -1352,10 +1352,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.30.1.tgz#73bf1885ff052b82fbb0f82f8671f73c36e9137c"
   integrity sha512-D6qjsXGcvhTjv0kI4fU8tUuBDF/Ueee4SVX79VfNDXZa64TfCW1Slkb6Z7O1p7vflqZjcmOVdZlqf8gvJxc6og==
 
-"@seatsio/seatsio-types@5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-5.3.0.tgz#03e13d6c75acf5060fdb5214d42518b82e97ffa5"
-  integrity sha512-S33ZyZ/UeOVd7AB9asS+TcNRC1+2HWjWdVJNy3hxfZ7LxB8b/GgVYoFkilduga7HohCA/p/fJuBXIC6Dmzp77A==
+"@seatsio/seatsio-types@5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-5.4.0.tgz#d599c1df89193ccc7d861333217a6926e37e0a19"
+  integrity sha512-ZOXVbXc9P+C7J4U7oq8RX3lkUfjBvMGOwekEzCLrF+KP62MXJ+4oDwakh/pZezjzc/VEIINpp64G8xEsfOwu9g==
 
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
