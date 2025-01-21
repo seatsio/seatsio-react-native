@@ -5,7 +5,7 @@ import SeatingChartWithMethods from './examples/SeatingChartWithMethods'
 import SeatingChartWithObjectMethods from './examples/SeatingChartWithObjectMethods'
 import ReactToEventsExample from './examples/ReactToEvents'
 
-export default class App extends React.Component {
+export default class App extends React.Component<{}, { Component: React.ComponentType | null }> {
 
     constructor (props) {
         super(props)
