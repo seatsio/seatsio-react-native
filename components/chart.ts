@@ -30,8 +30,15 @@ export default class Chart {
         return this.injectJsAndReturnDeferredFn('chart.clearSelection()')
     }
 
+    doSelectObjects (objects: SeatsioObject[]) {
+        return this.injectJsAndReturnDeferredFn(`chart.doSelectObjects(${JSON.stringify(objects)})`)
+    }
+
+    /**
+     * @deprecated Use `chart.doSelectObjects` instead
+     */
     selectObjects (objects: SeatsioObject[]) {
-        return this.injectJsAndReturnDeferredFn(`chart.selectObjects(${JSON.stringify(objects)})`)
+        return this.doSelectObjects(objects)
     }
 
     deselectObjects (objects: SeatsioObject[]) {
