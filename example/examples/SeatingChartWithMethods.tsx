@@ -3,7 +3,7 @@ import { SeatingChart } from '@seatsio/seatsio-types'
 import React from 'react'
 import { Alert, Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
-class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: SeatingChart }> {
+class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart }> {
     constructor (props: {}) {
         super(props)
         this.state = {}
@@ -33,7 +33,7 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
                             <Button title={'startNewSession()'} onPress={() => chart.startNewSession()}/>
                             <Button title={'listSelectedObjects()'} onPress={() => chart.listSelectedObjects().then(objects => Alert.alert(objects.map(o => o.label).join(', ')))} />
                             <Button title={'clearSelection()'} onPress={() => chart.clearSelection()}/>
-                            <Button title={'selectObjects([\'Arena-1-11, \'Arena-1-12\'])'} onPress={() => (chart as any).selectObjects(['Arena-1-11', 'Arena-1-12']) }/>
+                            <Button title={'selectObjects([\'Arena-1-11, \'Arena-1-12\'])'} onPress={() => { console.log('Chart', chart); chart.doSelectObjects(['Arena-1-11', 'Arena-1-12']) }}/>
                             <Button title={'deselectObjects([\'Arena-1-11\', \'Arena-1-12\'])'} onPress={() => chart.deselectObjects(['Arena-1-11', 'Arena-1-12'])}/>
                             <Button title={'selectCategories([\'35\'])'} onPress={() => chart.selectCategories(['35'])}/>
                             <Button title={'deselectCategories([\'35\'])'} onPress={() => chart.deselectCategories(['35'])}/>
@@ -90,4 +90,4 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
 }
 
 
-export default SimpleSeatingChartWithChangeConfig
+export default SeatingChartWithMethods

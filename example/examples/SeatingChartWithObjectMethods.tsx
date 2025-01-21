@@ -3,7 +3,7 @@ import { SeatingChart, SelectableObject } from '@seatsio/seatsio-types'
 import React from 'react'
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
-class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: SeatingChart }> {
+class SeatingChartWithObjectMethods extends React.Component<{}, { chart?: SeatingChart }> {
     constructor (props: {}) {
         super(props)
         this.state = {}
@@ -101,4 +101,4 @@ class SimpleSeatingChartWithChangeConfig extends React.Component<{}, { chart?: S
 }
 
 
-export default SimpleSeatingChartWithChangeConfig
+export default SeatingChartWithObjectMethods
