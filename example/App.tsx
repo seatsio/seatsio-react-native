@@ -4,17 +4,23 @@ import SimpleSeatingChart from './examples/SimpleSeatingChart'
 import SeatingChartWithMethods from './examples/SeatingChartWithMethods'
 import SeatingChartWithObjectMethods from './examples/SeatingChartWithObjectMethods'
 import ReactToEventsExample from './examples/ReactToEvents'
+import { SeatingChart } from '@seatsio/seatsio-types'
+import Deferred from '@seatsio/seatsio-react-native/components/deferred'
+
+export type DemoChart = SeatingChart & {
+    getHoldToken: () => Deferred
+}
 
 export default class App extends React.Component<{}, { Component: React.ComponentType | null }> {
 
-    constructor (props) {
+    constructor (props: {}) {
         super(props)
         this.state = {
             Component: null,
         }
     }
 
-    renderExample ([Component, title]) {
+    renderExample ([Component, title]: [React.ComponentType, string]) {
         return (
             <TouchableOpacity key={title} style={styles.button} onPress={() => this.setState({ Component })}>
                 <Text>{title}</Text>
@@ -30,7 +36,7 @@ export default class App extends React.Component<{}, { Component: React.Componen
         )
     }
 
-    renderExamples (examples) {
+    renderExamples (examples: [React.ComponentType, string][]) {
         const { Component } = this.state
 
         return (
