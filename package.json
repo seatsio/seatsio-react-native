@@ -45,8 +45,8 @@
     "zx": "8.3.0"
   },
   "scripts": {
-    "start": "tsup --watch",
-    "build": "env NODE_ENV=production tsup",
+    "start": "tsc && tsup --watch",
+    "build": "env NODE_ENV=production tsc && tsup",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
