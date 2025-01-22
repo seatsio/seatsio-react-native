@@ -1,5 +1,5 @@
-import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
-import { SeatingChart, SelectableObject } from '@seatsio/seatsio-types'
+import SeatsioSeatingChart, { SeatingChart } from '@seatsio/seatsio-react-native'
+import { SelectableObject } from '@seatsio/seatsio-types'
 import React from 'react'
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 

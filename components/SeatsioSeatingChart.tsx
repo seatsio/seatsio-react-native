@@ -4,11 +4,23 @@ import Chart from './chart'
 import Deferred from './deferred'
 import { randomUuid } from './util'
 import SeatsioObject, { ObjectData } from './seatsioObject'
-import { ChartRendererConfigOptions, Region } from '@seatsio/seatsio-types'
+import { ChartRendererConfigOptions, Region, SeatingChart } from '@seatsio/seatsio-types'
 
-type SeatingChartProps = ChartRendererConfigOptions & {
+type SeatingChartProps = Omit<ChartRendererConfigOptions, 'onChartRenderingStarted' | 'onChartRenderingFailed' | 'onChartRendered'
+> & {
     chartJsUrl?: string
     region: Region
+    onChartRenderingStarted?: (chart: ReactNativeSeatingChart) => void
+    onChartRenderingFailed?: (chart: ReactNativeSeatingChart) => void
+    onChartRendered?: (chart: ReactNativeSeatingChart) => void
+}
+
+export type ReactNativeSeatingChart = Omit<SeatingChart, 'holdToken' | 'onChartRenderingStarted' | 'onChartRenderingFailed' | 'onChartRendered'
+> & {
+    getHoldToken: () => Promise<string>
+    onChartRenderingStarted?: (chart: ReactNativeSeatingChart) => void
+    onChartRenderingFailed?: (chart: ReactNativeSeatingChart) => void
+    onChartRendered?: (chart: ReactNativeSeatingChart) => void
 }
 
 export type TransformerFunction = (o: ObjectData) => SeatsioObject

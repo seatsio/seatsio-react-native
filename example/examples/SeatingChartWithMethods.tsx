@@ -1,5 +1,4 @@
-import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
-import { SeatingChart } from '@seatsio/seatsio-types'
+import SeatsioSeatingChart, { SeatingChart } from '@seatsio/seatsio-react-native'
 import React from 'react'
 import { Alert, Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
@@ -11,6 +10,7 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
 
     render () {
         const { chart } = this.state
+
         return (
             <View style={this.styles.container}>
                 <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
@@ -27,7 +27,7 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
                     </View>
                     { chart && (
                         <View>
-                            <Button title={'getHoldToken()'} onPress={() => (chart as any).getHoldToken().then((holdToken: string) => Alert.alert(holdToken))}/>
+                            <Button title={'getHoldToken()'} onPress={() => chart.getHoldToken().then((holdToken: string) => Alert.alert(holdToken))}/>
 
                             <Button title={'resetView()'} onPress={() => chart.resetView()}/>
                             <Button title={'startNewSession()'} onPress={() => chart.startNewSession()}/>
