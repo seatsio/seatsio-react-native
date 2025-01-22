@@ -4,15 +4,8 @@ import SimpleSeatingChart from './examples/SimpleSeatingChart'
 import SeatingChartWithMethods from './examples/SeatingChartWithMethods'
 import SeatingChartWithObjectMethods from './examples/SeatingChartWithObjectMethods'
 import ReactToEventsExample from './examples/ReactToEvents'
-import { SeatingChart } from '@seatsio/seatsio-types'
-import Deferred from '@seatsio/seatsio-react-native/components/deferred'
-
-export type DemoChart = SeatingChart & {
-    getHoldToken: () => Deferred
-}
 
 export default class App extends React.Component<{}, { Component: React.ComponentType | null }> {
-
     constructor (props: {}) {
         super(props)
         this.state = {
