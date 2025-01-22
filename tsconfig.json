@@ -1,6 +1,7 @@
 {
     "extends": "@tsconfig/react-native/tsconfig.json",
     "compilerOptions": {
-        "types": ["node", "react-native"]
-    }
+        "types": ["node", "react-native"],
+    },
+    "include": ["index.ts", "components/**/*"]
 }
