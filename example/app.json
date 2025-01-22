@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "example",
+    "newArchEnabled": true,
     "slug": "example",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -28,14 +29,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "expo": {
-      "ios": {
-        "newArchEnabled": true
-      },
-      "android": {
-        "newArchEnabled": true
-      }
     }
   }
 }
