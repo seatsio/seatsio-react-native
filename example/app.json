@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "example",
+    "newArchEnabled": true,
     "slug": "example",
     "version": "1.0.0",
     "orientation": "portrait",
