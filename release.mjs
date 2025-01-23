@@ -1,5 +1,3 @@
-#!/usr/bin/env zx
-
 /*
 * Script to release the seats.io react native lib.
 *   - changes the version number in README.md

@@ -22,15 +22,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: fregante/setup-git-user@v2
-      - run: yarn zx ./release.mjs -v $VERSION_TO_BUMP
-        env:
-          VERSION_TO_BUMP: ${{ inputs.versionToBump }}
-          GH_TOKEN: ${{ github.token }}
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: yarn
+      - run: yarn install
+      - run: yarn zx ./release.mjs -v $VERSION_TO_BUMP
+        env:
+          VERSION_TO_BUMP: ${{ inputs.versionToBump }}
+          GH_TOKEN: ${{ github.token }}
+      - run: yarn build
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
