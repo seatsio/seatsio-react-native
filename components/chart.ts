@@ -1,5 +1,5 @@
 import SeatsioObject from './seatsioObject'
-import { JavaScriptInjectorFunction } from './SeatsioSeatingChart'
+import {JavaScriptInjectorFunction, ReactNativeConfigChange} from './SeatsioSeatingChart'
 
 export default class Chart {
     private data: any
@@ -53,14 +53,7 @@ export default class Chart {
         return this.injectJsAndReturnDeferredFn(`chart.deselectCategories(${JSON.stringify(categories)})`)
     }
 
-    // TODO: Serialzed config type?
-    changeConfig (newConfig: any) {
-        if (newConfig.objectColor) {
-            newConfig.objectColor = newConfig.objectColor.toString()
-        }
-        if (newConfig.objectLabel) {
-            newConfig.objectLabel = newConfig.objectLabel.toString()
-        }
+    changeConfig (newConfig: ReactNativeConfigChange) {
         return this.injectJsAndReturnDeferredFn('chart.changeConfig(' + JSON.stringify(newConfig) + ')')
     }
 

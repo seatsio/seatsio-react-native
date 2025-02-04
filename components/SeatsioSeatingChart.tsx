@@ -4,23 +4,44 @@ import Chart from './chart'
 import Deferred from './deferred'
 import { randomUuid } from './util'
 import SeatsioObject, { ObjectData } from './seatsioObject'
-import { ChartRendererConfigOptions, Region, SeatingChart } from '@seatsio/seatsio-types'
+import { ChartRendererConfigOptions, ConfigChange, Region, SeatingChart } from '@seatsio/seatsio-types'
 
-type SeatingChartProps = Omit<ChartRendererConfigOptions, 'onChartRenderingStarted' | 'onChartRenderingFailed' | 'onChartRendered'
+type SeatingChartProps = Omit<ChartRendererConfigOptions,
+    'onChartRenderingStarted' |
+    'onChartRenderingFailed' |
+    'onChartRendered' |
+    'objectColor' |
+    'sectionColor' |
+    'objectLabel' |
+    'objectIcon' |
+    'isObjectVisible' |
+    'canGASelectionBeIncreased' |
+    'objectCategory'
 > & {
     chartJsUrl?: string
     region: Region
     onChartRenderingStarted?: (chart: ReactNativeSeatingChart) => void
     onChartRenderingFailed?: (chart: ReactNativeSeatingChart) => void
     onChartRendered?: (chart: ReactNativeSeatingChart) => void
+    objectColor?: string
+    sectionColor?: string
+    objectLabel?: string
+    objectIcon?: string
+    isObjectVisible?: string
+    canGASelectionBeIncreased?: string
+    objectCategory?: string
 }
 
-export type ReactNativeSeatingChart = Omit<SeatingChart, 'holdToken' | 'onChartRenderingStarted' | 'onChartRenderingFailed' | 'onChartRendered'
+export type ReactNativeSeatingChart = Omit<SeatingChart, 'holdToken' | 'changeConfig'
 > & {
     getHoldToken: () => Promise<string>
-    onChartRenderingStarted?: (chart: ReactNativeSeatingChart) => void
-    onChartRenderingFailed?: (chart: ReactNativeSeatingChart) => void
-    onChartRendered?: (chart: ReactNativeSeatingChart) => void
+    changeConfig: (config: ReactNativeConfigChange) => Promise<void>
+}
+
+export type ReactNativeConfigChange = Omit<ConfigChange, 'objectLabel' | 'objectColor'
+> & {
+    objectColor?: string
+    objectLabel?: string
 }
 
 export type TransformerFunction = (o: ObjectData) => SeatsioObject
@@ -342,60 +363,25 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             `
         }
         if (objectColor) {
-            configString += `
-                , "objectColor": (obj, defaultColor, extraConfig) => {
-                        ${objectColor.toString()}
-                        return objectColor(obj, defaultColor, extraConfig);
-                }
-            `
+            configString += ', "objectColor": ' + objectColor
         }
         if (sectionColor) {
-            configString += `
-                , "sectionColor": (section, defaultColor, extraConfig) => {
-                        ${sectionColor.toString()}
-                        return sectionColor(section, defaultColor, extraConfig);
-                }
-            `
+            configString += ', "sectionColor": ' + sectionColor
         }
         if (objectLabel) {
-            configString += `
-                , "objectLabel": (object, defaultLabel, extraConfig) => {
-                        ${objectLabel.toString()}
-                        return objectLabel(object, defaultLabel, extraConfig);
-                }
-            `
+            configString += ', "objectLabel": ' + objectLabel
         }
         if (objectIcon) {
-            configString += `
-                , "objectIcon": (object, defaultIcon, extraConfig) => {
-                        ${objectIcon.toString()}
-                        return objectIcon(object, defaultIcon, extraConfig);
-                }
-            `
+            configString += ', "objectIcon": ' + objectIcon
         }
         if (isObjectVisible) {
-            configString += `
-                , "isObjectVisible": (object, extraConfig) => {
-                        ${isObjectVisible.toString()}
-                        return isObjectVisible(object, extraConfig);
-                }
-            `
+            configString += ', "isObjectVisible": ' + isObjectVisible
         }
         if (canGASelectionBeIncreased) {
-            configString += `
-                , "canGASelectionBeIncreased": (gaArea, defaultValue, extraConfig, ticketType) => {
-                        ${canGASelectionBeIncreased.toString()}
-                        return canGASelectionBeIncreased(gaArea, defaultValue, extraConfig, ticketType);
-                }
-            `
+            configString += ', "canGASelectionBeIncreased": ' + canGASelectionBeIncreased
         }
         if (objectCategory) {
-            configString += `
-                , "objectCategory": (object, categories, defaultCategory, extraConfig) => {
-                        ${objectCategory.toString()}
-                        return objectCategory(object, categories, defaultCategory, extraConfig);
-                }
-            `
+            configString += ', "objectCategory": ' + objectCategory
         }
         configString += '}'
         return configString
