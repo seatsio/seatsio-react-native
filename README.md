@@ -60,10 +60,9 @@ The solution is to:
 2. user navigates away from the seating chart: webview gets destroyed
 3. user navigates back to the chart: render the chart with `session="manual"` and `holdToken="<the stored hold token>"`. Previously selected seats will automatically be selected again.
 
-### Note for Hermes
+### Callbacks
 
-Since React Native 0.70, Hermes became the default JS engine. Hermes works fine with seatsio-react-native, but you'll
-need to make sure to add `'show source'` to some callbacks:
+Some callbacks (which are internally executed inside the seats.io iFrame) need to be passed in as a string: 
 
 - `objectColor`
 - `sectionColor`
@@ -72,7 +71,6 @@ need to make sure to add `'show source'` to some callbacks:
 - `isObjectVisible`
 - `canGASelectionBeIncreased`
 
-If not, you'll see an error like `Uncaught ReferenceError: bytecode is not defined`.
 
 So for example, `objectColor` would look like this:
 
@@ -83,9 +81,6 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native';
     region="eu"
     workspaceKey="<yourPublicWorkspaceKey>"
     event="<yourEventKey>"
-    objectColor={object => {
-        'show source'
-        return 'red'
-    }}
+    objectColor="(object) => { return object.selectable ? 'green' : 'red' }"
 />
 ```

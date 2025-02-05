@@ -22,6 +22,7 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
                             event="largeTheatreEvent"
                             onChartRendered={(chart) => this.setState({ chart })}
                             session="start"
+                            objectColor="(object) => { return object.selectable ? 'green' : 'red' }"
                         />
 
                     </View>
@@ -42,9 +43,7 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
                                 title="changeConfig()"
                                 onPress={() => {
                                     chart.changeConfig({
-                                        objectColor: object => (object as any).isSelectable() ? 'green' : 'red',
-                                        objectLabel: () => 'x',
-                                        numberOfPlacesToSelect: 5
+                                        objectColor: '(object) => { return object.selectable ? \'red\' : \'green\' }'
                                     })
                                 }}
                             />
