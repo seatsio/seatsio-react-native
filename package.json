@@ -1,6 +1,6 @@
 {
   "name": "@seatsio/seatsio-react-native",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "title": "Seatsio React Native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
