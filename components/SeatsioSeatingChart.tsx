@@ -175,6 +175,10 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             this.props.onSelectionValid?.()
         } else if (message.type === 'onSelectionInvalid') {
             this.props.onSelectionInvalid?.(message.data.violations)
+        } else if (message.type === 'onHoldCallsInProgress') {
+            this.props.onHoldCallsInProgress?.()
+        } else if (message.type === 'onHoldCallsComplete') {
+            this.props.onHoldCallsComplete?.()
         } else if (message.type === 'onFullScreenOpened') {
             this.props.onFullScreenOpened?.()
         } else if (message.type === 'onFullScreenClosed') {
@@ -264,6 +268,8 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             onReleaseHoldFailed,
             onSelectionValid,
             onSelectionInvalid,
+            onHoldCallsInProgress,
+            onHoldCallsComplete,
             onFullScreenOpened,
             onFullScreenClosed,
             onFilteredCategoriesChanged,
@@ -318,6 +324,12 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         }
         if (onSelectionInvalid) {
             configString += this.registerPostMessage('onSelectionInvalid', [])
+        }
+        if (onHoldCallsInProgress) {
+            configString += this.registerPostMessage('onHoldCallsInProgress', [])
+        }
+        if (onHoldCallsComplete) {
+            configString += this.registerPostMessage('onHoldCallsComplete', [])
         }
         if (onFullScreenOpened) {
             configString += this.registerPostMessage('onFullScreenOpened', [])
