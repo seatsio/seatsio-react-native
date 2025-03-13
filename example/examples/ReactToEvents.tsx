@@ -30,6 +30,8 @@ class ReactToEventsExample extends React.Component {
                             onSelectionInvalid={() => console.log('selection invalid')}
                             onFullScreenOpened={() => console.log('full screen opened')}
                             onFullScreenClosed={() => console.log('full screen closed')}
+                            onHoldCallsInProgress={() => console.log('hold calls in progress')}
+                            onHoldCallsComplete={() => console.log('hold calls complete')}
                         />
                     </View>
 

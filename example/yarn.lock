@@ -1553,10 +1553,10 @@
 "@seatsio/seatsio-react-native@file:../dist":
   version "0.0.0"
 
-"@seatsio/seatsio-types@5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-5.5.0.tgz#0b794cccc2cd56f218827218bc77ab2b1e89f9ba"
-  integrity sha512-kSmHFT1i+k6unNFWN+ezsYePVaGEbuR4XeW8oT76rBnaECGGOjUJ7Z+/p3iBpIW4qsUjDhOCy23qPFUmVr2kYQ==
+"@seatsio/seatsio-types@5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-5.6.0.tgz#3234631f4b6d90f4dcfbe0b950c126e8e19e6a08"
+  integrity sha512-WyAu4/hAVlkK7GdwFpVdHnG2HSbOGFa53t6ZIvok7YG7KEwrracx8r7i7iz4wkTfNaLx+K2rJS+fSgxgEEfZWw==
 
 "@segment/loosely-validate-event@^2.0.0":
   version "2.0.0"
