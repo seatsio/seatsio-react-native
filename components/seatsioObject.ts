@@ -20,6 +20,7 @@ export interface ObjectData {
     selected: boolean
     status: string
     uuid: string
+    resaleListingId: string
 }
 
 export default class SeatsioObject implements ObjectData {
@@ -41,6 +42,7 @@ export default class SeatsioObject implements ObjectData {
     public selected: boolean
     public status: string
     public uuid: string
+    public resaleListingId: string
 
     private injectJsFn: JavaScriptInjectorFunction
 
@@ -63,6 +65,7 @@ export default class SeatsioObject implements ObjectData {
         this.selected = data.selected
         this.status = data.status
         this.uuid = data.uuid
+        this.resaleListingId = data.resaleListingId
         this.injectJsFn = injectJsFn
     }
 
