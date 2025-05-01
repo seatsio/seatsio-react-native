@@ -25,24 +25,24 @@
     "react-native-webview": ">=11.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "9.23.0",
-    "@seatsio/seatsio-types": "5.6.0",
+    "@eslint/js": "9.25.1",
+    "@seatsio/seatsio-types": "5.7.0",
     "@stylistic/eslint-plugin": "4.2.0",
-    "@swc/core": "1.11.16",
+    "@swc/core": "1.11.24",
     "@tsconfig/react-native": "3.0.5",
     "@types/node": "^22.10.7",
     "@types/react": "19.0.7",
     "@types/react-native": "0.73.0",
-    "@types/react-test-renderer": "19.0.0",
-    "eslint": "9.23.0",
+    "@types/react-test-renderer": "19.1.0",
+    "eslint": "9.25.1",
     "globals": "16.0.0",
     "react": "18.3.1",
     "react-native-webview": "13.13.5",
     "semver": "7.7.1",
     "tsup": "8.4.0",
-    "typescript": "5.8.2",
-    "typescript-eslint": "8.29.0",
-    "zx": "8.5.0"
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.31.1",
+    "zx": "8.5.3"
   },
   "scripts": {
     "start": "tsc && tsup --watch",
