@@ -9,17 +9,17 @@
   },
   "dependencies": {
     "@seatsio/seatsio-react-native": "file:../dist",
-    "expo": "53.0.5",
+    "expo": "53.0.9",
     "expo-status-bar": "2.2.3",
     "react": "19.1.0",
     "react-native": "0.79.2",
-    "react-native-webview": "13.13.5"
+    "react-native-webview": "13.14.0"
   },
   "devDependencies": {
-    "@babel/core": "7.27.1",
+    "@babel/core": "7.27.4",
     "@react-native/metro-config": "0.79.2",
-    "@seatsio/seatsio-types": "5.7.0",
-    "@types/react": "19.1.2",
+    "@seatsio/seatsio-types": "5.9.0",
+    "@types/react": "19.1.6",
     "typescript": "5.8.3"
   },
   "private": true
