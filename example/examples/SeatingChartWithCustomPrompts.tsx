@@ -84,7 +84,7 @@ class SeatingChartWithCustomPrompts extends React.Component {
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
                             pricing={[{ category: 2, price: 40 }]}
-                            onPlacesPrompt={Platform.OS === 'ios' && Alert.prompt ? this.handlePlacesPrompt : undefined}
+                            onPlacesPrompt={this.handlePlacesPrompt}
                         />
                     </View>
 
@@ -103,7 +103,7 @@ class SeatingChartWithCustomPrompts extends React.Component {
                                 }
                             ]}
                             objectWithoutPricingSelectable={false}
-                            onTicketTypePrompt={Platform.OS === 'ios' && Alert.prompt ? this.handleTicketTypePrompt : undefined}
+                            onTicketTypePrompt={this.handleTicketTypePrompt}
                         />
                     </View>
                 </ScrollView>
