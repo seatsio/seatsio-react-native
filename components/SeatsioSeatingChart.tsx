@@ -38,6 +38,10 @@ type SeatingChartProps = Omit<ChartRendererConfigOptions,
         parameters: any,
         confirmSelection: (ticketType: string) => void
     ) => void
+    onPlacesWithTicketTypesPrompt?: (
+        parameters: any,
+        confirmSelection: (placesPerTicketType: Record<string, number> | string[]) => void
+    ) => void
 }
 
 export type ReactNativeSeatingChart = Omit<SeatingChart, 'holdToken' | 'changeConfig'
@@ -223,6 +227,16 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                     )
                 }
             )
+        } else if (message.type === 'onPlacesWithTicketTypesPromptRequested') {
+            this.props.onPlacesWithTicketTypesPrompt?.(
+                message.data.parameters,
+                (placesPerTicketType: Record<string, number> | string[]) => {
+                    const arg = JSON.stringify(placesPerTicketType)
+                    this.injectJs(
+                        `promises[${message.data.promiseId}](${typeof placesPerTicketType === 'string' ? `"${arg}"` : arg}); delete promises[${message.data.promiseId}];`
+                    )
+                }
+            )
         } else {
             const promise = this.promises[message.type]
             if (promise !== undefined) {
@@ -309,7 +323,8 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             canGASelectionBeIncreased,
             objectCategory,
             onPlacesPrompt,
-            onTicketTypePrompt,            
+            onTicketTypePrompt,
+            onPlacesWithTicketTypesPrompt,
             ...config
         } = this.props
         config.divId = this.divId
@@ -444,6 +459,21 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                     promiseCounter++;
                     window.ReactNativeWebView.postMessage(JSON.stringify({
                         type: "onTicketTypePromptRequested",
+                        data: {
+                            promiseId: promiseCounter,
+                            parameters: parameters
+                        }
+                    }));
+                    promises[promiseCounter] = confirmSelection;
+                }
+            `
+        }
+        if (onPlacesWithTicketTypesPrompt) {
+            configString += `
+                , "onPlacesWithTicketTypesPrompt": (parameters, confirmSelection) => {
+                    promiseCounter++;
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        type: "onPlacesWithTicketTypesPromptRequested",
                         data: {
                             promiseId: promiseCounter,
                             parameters: parameters

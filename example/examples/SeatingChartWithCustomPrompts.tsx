@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import { StyleSheet, View, Text, ScrollView, Alert, Platform } from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
@@ -59,6 +57,47 @@ class SeatingChartWithCustomPrompts extends React.Component {
 
     }
 
+    handlePlacesWithTicketTypesPrompt = (params, confirmSelection) => {
+        const ticketTypeOptions = params.ticketTypes.map(tt => tt.ticketType)
+        const placesByTicketType = {}
+        let idx = 0
+        const askNext = () => {
+            if (idx >= ticketTypeOptions.length) {
+                console.log('All prompts done, calling confirmSelection with', placesByTicketType)
+                confirmSelection(placesByTicketType)
+                return
+            }
+            const type = ticketTypeOptions[idx]
+            Alert.prompt(
+                `Set places for ticket type "${type}"`,
+                `Enter number (min: ${params.minPlaces}, max: ${params.maxPlaces})`,
+                [
+                    {
+                        text: 'Cancel',
+                        style: 'cancel',
+                        onPress: () => {
+                            placesByTicketType[type] = 0
+                            idx++
+                            askNext()
+                        }
+                    },
+                    {
+                        text: 'OK',
+                        onPress: (amount) => {
+                            const num = parseInt(amount)
+                            placesByTicketType[type] = isNaN(num) ? 0 : num
+                            idx++
+                            askNext()
+                        }
+                    }
+                ],
+                'plain-text',
+                '0'
+            )
+        }
+        askNext()
+    }
+
     render () {
         console.log('Alert.prompt', Alert.prompt)
         if (Platform.OS !== 'ios') {
@@ -104,6 +143,27 @@ class SeatingChartWithCustomPrompts extends React.Component {
                             ]}
                             objectWithoutPricingSelectable={false}
                             onTicketTypePrompt={this.handleTicketTypePrompt}
+                        />
+                    </View>
+
+                    <Text style={{ marginTop: 40, fontWeight: 'bold' }}>Demo: onPlacesWithTicketTypesPrompt</Text>
+                    <View style={this.styles.chart}>
+                        <SeatsioSeatingChart
+                            region="eu"
+                            workspaceKey="publicDemoKey"
+                            event="smallTheatreEvent"
+                            pricing={[
+                                { category: 1, price: 30 },
+                                {
+                                    category: 2, ticketTypes: [
+                                        { ticketType: 'Adult', price: 8 },
+                                        { ticketType: 'Child', price: 12 }
+                                    ]
+                                },
+                                { category: 3, price: 50 }
+                            ]}
+                            numberOfPlacesToSelect={3}
+                            onPlacesWithTicketTypesPrompt={this.handlePlacesWithTicketTypesPrompt}
                         />
                     </View>
                 </ScrollView>
