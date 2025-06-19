@@ -7,65 +7,73 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 class SeatingChartWithCustomPrompts extends React.Component {
     handlePlacesPrompt = (params, confirmSelection) => {
         const selectedPlaces = params.selectedPlaces
-        if (Platform.OS === 'ios' && Alert.prompt) {
-            Alert.prompt(
-                'Edit the number of selected places',
-                `Current: ${selectedPlaces}`,
-                [
-                    {
-                        text: 'Cancel',
-                        style: 'cancel',
+        Alert.prompt(
+            'Edit the number of selected places',
+            `Current: ${selectedPlaces}`,
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                {
+                    text: 'OK',
+                    onPress: (amount) => {
+                        const num = parseInt(amount)
+                        if (!isNaN(num)) {
+                            confirmSelection(num)
+                        }
                     },
-                    {
-                        text: 'OK',
-                        onPress: (amount) => {
-                            const num = parseInt(amount)
-                            if (!isNaN(num)) {
-                                confirmSelection(num)
-                            }
-                        },
-                    },
-                ],
-                'plain-text',
-                String(selectedPlaces)
-            )
-        } else {
-            // Fallback: just use current value
-            confirmSelection(selectedPlaces)
-        }
+                },
+            ],
+            'plain-text',
+            String(selectedPlaces)
+        )
+
+
     }
 
     handleTicketTypePrompt = (params, confirmSelection) => {
         const ticketTypeOptions = params.ticketTypes.map(tt => tt.ticketType)
         const first = ticketTypeOptions[0]
-        if (Platform.OS === 'ios' && Alert.prompt) {
-            Alert.prompt(
-                'Choose a ticket type',
-                `Options: ${ticketTypeOptions.join(', ')}`,
-                [
-                    {
-                        text: 'Cancel',
-                        style: 'cancel',
+
+        Alert.prompt(
+            'Choose a ticket type',
+            `Options: ${ticketTypeOptions.join(', ')}`,
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                {
+                    text: 'OK',
+                    onPress: (type) => {
+                        if (type && ticketTypeOptions.includes(type)) {
+                            confirmSelection(type)
+                        }
                     },
-                    {
-                        text: 'OK',
-                        onPress: (type) => {
-                            if (type && ticketTypeOptions.includes(type)) {
-                                confirmSelection(type)
-                            }
-                        },
-                    },
-                ],
-                'plain-text',
-                first
-            )
-        } else {
-            // Fallback: just use first option
-            confirmSelection(first)
-        }
+                },
+            ],
+            'plain-text',
+            first
+        )
+
     }
 
     render () {
+        console.log('Alert.prompt', Alert.prompt)
+        if (Platform.OS !== 'ios') {
+            return (
+                <View style={this.styles.container}>
+                    <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
+                        <Text style={{ marginTop: 40, fontWeight: 'bold' }}>
+                            This demo requires text input prompts, which are only available on iOS using Alert.prompt.
+                            {'\n\n'}
+                            For android, please use a third-party package (like react-native-dialog), or build your own input dialog.
+                        </Text>
+                    </ScrollView>
+                </View>
+            )
+        }
         return (
             <View style={this.styles.container}>
                 <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
@@ -76,7 +84,7 @@ class SeatingChartWithCustomPrompts extends React.Component {
                             workspaceKey="publicDemoKey"
                             event="smallTheatreEvent2"
                             pricing={[{ category: 2, price: 40 }]}
-                            onPlacesPrompt={this.handlePlacesPrompt}
+                            onPlacesPrompt={Platform.OS === 'ios' && Alert.prompt ? this.handlePlacesPrompt : undefined}
                         />
                     </View>
 
@@ -95,7 +103,7 @@ class SeatingChartWithCustomPrompts extends React.Component {
                                 }
                             ]}
                             objectWithoutPricingSelectable={false}
-                            onTicketTypePrompt={this.handleTicketTypePrompt}
+                            onTicketTypePrompt={Platform.OS === 'ios' && Alert.prompt ? this.handleTicketTypePrompt : undefined}
                         />
                     </View>
                 </ScrollView>
