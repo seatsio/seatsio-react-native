@@ -59,6 +59,10 @@ class SeatingChartWithCustomPrompts extends React.Component {
 
     }
 
+    handleOnPlacesWithTicketTypesPrompt = (params, confirmSelection) => {
+        confirmSelection({ Adult: 1, Child: 2 })
+    }
+
     render () {
         console.log('Alert.prompt', Alert.prompt)
         if (Platform.OS !== 'ios') {
@@ -104,6 +108,25 @@ class SeatingChartWithCustomPrompts extends React.Component {
                             ]}
                             objectWithoutPricingSelectable={false}
                             onTicketTypePrompt={this.handleTicketTypePrompt}
+                        />
+                    </View>
+
+                    <Text style={{ marginTop: 40, fontWeight: 'bold' }}>Demo: handleOnPlacesWithTicketTypesPrompt</Text>
+                    <View style={this.styles.chart}>
+                        <SeatsioSeatingChart
+                            region="eu"
+                            workspaceKey="publicDemoKey"
+                            event="smallTheatreEvent2"
+                            pricing={[
+                                { category: 1, price: 30 },
+                                { category: 5, ticketTypes: [
+                                    { ticketType: 'Adult', price: 8 },
+                                    { ticketType: 'Child', price: 12 }]
+                                },
+                                { category: 3, price: 50 }
+                            ]}
+                            objectWithoutPricingSelectable={false}
+                            onPlacesWithTicketTypesPrompt={this.handleOnPlacesWithTicketTypesPrompt}
                         />
                     </View>
                 </ScrollView>
