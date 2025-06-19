@@ -4,6 +4,7 @@ import SimpleSeatingChart from './examples/SimpleSeatingChart'
 import SeatingChartWithMethods from './examples/SeatingChartWithMethods'
 import SeatingChartWithObjectMethods from './examples/SeatingChartWithObjectMethods'
 import ReactToEventsExample from './examples/ReactToEvents'
+import SeatingChartWithCustomPrompts from './examples/SeatingChartWithCustomPrompts'
 
 export default class App extends React.Component<{}, { Component: React.ComponentType | null }> {
     constructor (props: {}) {
@@ -52,7 +53,8 @@ export default class App extends React.Component<{}, { Component: React.Componen
                 [SimpleSeatingChart, 'Simple seating chart'],
                 [SeatingChartWithMethods, 'call methods on chart'],
                 [SeatingChartWithObjectMethods, 'call methods on objects'],
-                [ReactToEventsExample, 'React to events']
+                [ReactToEventsExample, 'React to events'],
+                [SeatingChartWithCustomPrompts, 'Custom prompts']
             ]
         )
     }

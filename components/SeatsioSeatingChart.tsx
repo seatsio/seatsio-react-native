@@ -30,6 +30,18 @@ type SeatingChartProps = Omit<ChartRendererConfigOptions,
     isObjectVisible?: string
     canGASelectionBeIncreased?: string
     objectCategory?: string
+    onPlacesPrompt?: (
+        parameters: any,
+        confirmSelection: (places: number) => void
+    ) => void
+    onTicketTypePrompt?: (
+        parameters: any,
+        confirmSelection: (ticketType: string) => void
+    ) => void
+    onPlacesWithTicketTypesPrompt?: (
+        parameters: any,
+        confirmSelection: (placesPerTicketType: Record<string, number> | string[]) => void
+    ) => void
 }
 
 export type ReactNativeSeatingChart = Omit<SeatingChart, 'holdToken' | 'changeConfig'
@@ -197,6 +209,34 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             this.injectJs(
                 `resolvePromise(${message.data.promiseId}, "${tooltipInfo}")`
             )
+        } else if (message.type === 'onPlacesPromptRequested') {
+            this.props.onPlacesPrompt?.(
+                message.data.parameters,
+                (places: number) => {
+                    this.injectJs(
+                        `promises[${message.data.promiseId}](${places}); delete promises[${message.data.promiseId}];`
+                    )
+                }
+            )
+        } else if (message.type === 'onTicketTypePromptRequested') {
+            this.props.onTicketTypePrompt?.(
+                message.data.parameters,
+                (ticketType: string) => {
+                    this.injectJs(
+                        `promises[${message.data.promiseId}]("${ticketType}"); delete promises[${message.data.promiseId}];`
+                    )
+                }
+            )
+        } else if (message.type === 'onPlacesWithTicketTypesPromptRequested') {
+            this.props.onPlacesWithTicketTypesPrompt?.(
+                message.data.parameters,
+                (placesPerTicketType: Record<string, number> | string[]) => {
+                    const arg = JSON.stringify(placesPerTicketType)
+                    this.injectJs(
+                        `promises[${message.data.promiseId}](${typeof placesPerTicketType === 'string' ? `"${arg}"` : arg}); delete promises[${message.data.promiseId}];`
+                    )
+                }
+            )
         } else {
             const promise = this.promises[message.type]
             if (promise !== undefined) {
@@ -282,6 +322,9 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
             isObjectVisible,
             canGASelectionBeIncreased,
             objectCategory,
+            onPlacesPrompt,
+            onTicketTypePrompt,
+            onPlacesWithTicketTypesPrompt,
             ...config
         } = this.props
         config.divId = this.divId
@@ -394,6 +437,51 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
         }
         if (objectCategory) {
             configString += ', "objectCategory": ' + objectCategory
+        }
+        if (onPlacesPrompt) {
+            configString += `
+                , "onPlacesPrompt": (parameters, confirmSelection) => {
+                    promiseCounter++;
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        type: "onPlacesPromptRequested",
+                        data: {
+                            promiseId: promiseCounter,
+                            parameters: parameters
+                        }
+                    }));
+                    promises[promiseCounter] = confirmSelection;
+                }
+            `
+        }
+        if (onTicketTypePrompt) {
+            configString += `
+                , "onTicketTypePrompt": (parameters, confirmSelection) => {
+                    promiseCounter++;
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        type: "onTicketTypePromptRequested",
+                        data: {
+                            promiseId: promiseCounter,
+                            parameters: parameters
+                        }
+                    }));
+                    promises[promiseCounter] = confirmSelection;
+                }
+            `
+        }
+        if (onPlacesWithTicketTypesPrompt) {
+            configString += `
+                , "onPlacesWithTicketTypesPrompt": (parameters, confirmSelection) => {
+                    promiseCounter++;
+                    window.ReactNativeWebView.postMessage(JSON.stringify({
+                        type: "onPlacesWithTicketTypesPromptRequested",
+                        data: {
+                            promiseId: promiseCounter,
+                            parameters: parameters
+                        }
+                    }));
+                    promises[promiseCounter] = confirmSelection;
+                }
+            `
         }
         configString += '}'
         return configString
