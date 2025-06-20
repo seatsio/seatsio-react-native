@@ -1,59 +1,19 @@
 
 
 import React from 'react'
-import { StyleSheet, View, Text, ScrollView, Alert, Platform } from 'react-native'
+import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 
 class SeatingChartWithCustomPrompts extends React.Component {
     handlePlacesPrompt = (params, confirmSelection) => {
-        const selectedPlaces = params.selectedPlaces
-        Alert.prompt(
-            'Edit the number of selected places',
-            `Current: ${selectedPlaces}`,
-            [
-                {
-                    text: 'Cancel',
-                    style: 'cancel',
-                },
-                {
-                    text: 'OK',
-                    onPress: (amount) => {
-                        const num = parseInt(amount)
-                        if (!isNaN(num)) {
-                            confirmSelection(num)
-                        }
-                    },
-                },
-            ],
-            'plain-text',
-            String(selectedPlaces)
-        )
+        // you can show a dialogue here to capture the required data
+        confirmSelection(2)
     }
 
     handleTicketTypePrompt = (params, confirmSelection) => {
+        // you can show a dialogue here to capture the required data
         const ticketTypeOptions = params.ticketTypes.map(tt => tt.ticketType)
-        const first = ticketTypeOptions[0]
-
-        Alert.prompt(
-            'Choose a ticket type',
-            `Options: ${ticketTypeOptions.join(', ')}`,
-            [
-                {
-                    text: 'Cancel',
-                    style: 'cancel',
-                },
-                {
-                    text: 'OK',
-                    onPress: (type) => {
-                        if (type && ticketTypeOptions.includes(type)) {
-                            confirmSelection(type)
-                        }
-                    },
-                },
-            ],
-            'plain-text',
-            first
-        )
+        confirmSelection(ticketTypeOptions[0])
     }
 
     handleOnPlacesWithTicketTypesPrompt = (params, confirmSelection) => {
@@ -62,20 +22,6 @@ class SeatingChartWithCustomPrompts extends React.Component {
     }
 
     render () {
-        console.log('Alert.prompt', Alert.prompt)
-        if (Platform.OS !== 'ios') {
-            return (
-                <View style={this.styles.container}>
-                    <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
-                        <Text style={{ marginTop: 40, fontWeight: 'bold' }}>
-                            This demo requires text input prompts, which are only available on iOS using Alert.prompt.
-                            {'\n\n'}
-                            For android, please use a third-party package (like react-native-dialog), or build your own input dialog.
-                        </Text>
-                    </ScrollView>
-                </View>
-            )
-        }
         return (
             <View style={this.styles.container}>
                 <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
