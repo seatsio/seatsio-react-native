@@ -28,8 +28,6 @@ class SeatingChartWithCustomPrompts extends React.Component {
             'plain-text',
             String(selectedPlaces)
         )
-
-
     }
 
     handleTicketTypePrompt = (params, confirmSelection) => {
@@ -56,10 +54,10 @@ class SeatingChartWithCustomPrompts extends React.Component {
             'plain-text',
             first
         )
-
     }
 
     handleOnPlacesWithTicketTypesPrompt = (params, confirmSelection) => {
+        // you can show a dialogue here to capture the required data
         confirmSelection({ Adult: 1, Child: 2 })
     }
 
