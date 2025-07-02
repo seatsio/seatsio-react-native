@@ -1401,10 +1401,10 @@
 "@seatsio/seatsio-react-native@file:../dist":
   version "0.0.0"
 
-"@seatsio/seatsio-types@5.9.0":
-  version "5.9.0"
-  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-5.9.0.tgz#e7f1f7682a318798e05fabf0238a5de5938501ec"
-  integrity sha512-9VxRW9+ua3/aZ7epPsrzta/YTgUxnfeE6E67iZZCIBm0wjBQJMooZMXAwCtNr/0CNZ+VSssXtD2mjAXOXGlUSg==
+"@seatsio/seatsio-types@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@seatsio/seatsio-types/-/seatsio-types-6.1.0.tgz#f28dd0091175db13377aede2d908bffb0882de21"
+  integrity sha512-5Bi8rCMTM3o5Yo4ZSnxE4SiC4N7iGat/mII8nQ60O2FAQQS2UV7gZxgGTo8Re8DAR9a9OAxwYc6zMbXI/77bCg==
 
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
