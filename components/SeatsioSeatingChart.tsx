@@ -38,6 +38,10 @@ type SeatingChartProps = Omit<ChartRendererConfigOptions,
         parameters: any,
         confirmSelection: (ticketType: string) => void
     ) => void
+    onPlacesWithTicketTypesPrompt?: (
+        parameters: any,
+        confirmSelection: (args: any) => void
+    ) => void
 }
 
 export type ReactNativeSeatingChart = Omit<SeatingChart, 'holdToken' | 'changeConfig'
@@ -229,7 +233,7 @@ export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
                 (ticketTypes: any) => {
                     const argsAsString = JSON.stringify(ticketTypes)
                     this.injectJs(
-                        `const callbackArgs = ${argsAsString}; promises[${message.data.promiseId}](callbackArgs); delete promises[${message.data.promiseId}];`
+                        `promises[${message.data.promiseId}](${argsAsString}); delete promises[${message.data.promiseId}];`
                     )
                 }
             )

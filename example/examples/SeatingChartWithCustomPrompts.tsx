@@ -7,7 +7,7 @@ import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 class SeatingChartWithCustomPrompts extends React.Component {
     handlePlacesPrompt = (params, confirmSelection) => {
         // you can show a dialogue here to capture the required data
-        confirmSelection(2)
+        confirmSelection(Math.random() * 10)
     }
 
     handleTicketTypePrompt = (params, confirmSelection) => {
@@ -17,8 +17,7 @@ class SeatingChartWithCustomPrompts extends React.Component {
     }
 
     handleOnPlacesWithTicketTypesPrompt = (params, confirmSelection) => {
-        // you can show a dialogue here to capture the required data
-        confirmSelection({ Adult: 1, Child: 2 })
+        confirmSelection({ Child: Math.random() * 10 })
     }
 
     render () {
