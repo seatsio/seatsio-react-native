@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@seatsio/seatsio-react-native": "file:../dist",
-    "expo": "52.0.47",
+    "expo": "53.0.20",
     "expo-status-bar": "2.2.3",
     "react": "18.3.1",
     "react-native": "0.80.2",
