@@ -12,15 +12,15 @@
     "expo": "53.0.20",
     "expo-status-bar": "2.2.3",
     "react": "19.1.1",
-    "react-native": "0.81.1",
+    "react-native": "0.81.4",
     "react-native-webview": "13.16.0"
   },
   "devDependencies": {
-    "@babel/core": "7.28.3",
+    "@babel/core": "7.28.4",
     "@react-native/metro-config": "0.81.1",
     "@seatsio/seatsio-types": "6.4.0",
-    "@types/react": "19.1.12",
-    "typescript": "5.9.2"
+    "@types/react": "19.1.16",
+    "typescript": "5.9.3"
   },
   "private": true
 }
