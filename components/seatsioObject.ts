@@ -21,6 +21,7 @@ export interface ObjectData {
     status: string
     uuid: string
     resaleListingId: string
+    floor?: string
 }
 
 export default class SeatsioObject implements ObjectData {
@@ -43,6 +44,7 @@ export default class SeatsioObject implements ObjectData {
     public status: string
     public uuid: string
     public resaleListingId: string
+    public floor?: string
 
     private injectJsFn: JavaScriptInjectorFunction
 
@@ -66,6 +68,7 @@ export default class SeatsioObject implements ObjectData {
         this.status = data.status
         this.uuid = data.uuid
         this.resaleListingId = data.resaleListingId
+        this.floor = data.floor
         this.injectJsFn = injectJsFn
     }
 
