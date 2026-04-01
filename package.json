@@ -27,8 +27,8 @@
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@seatsio/seatsio-types": "6.15.0",
-    "@stylistic/eslint-plugin": "5.9.0",
-    "@swc/core": "1.15.18",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "@swc/core": "1.15.21",
     "@tsconfig/react-native": "3.0.9",
     "@types/node": "^25.0.3",
     "@types/react": "19.0.7",
@@ -41,7 +41,7 @@
     "semver": "7.7.4",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.56.1",
+    "typescript-eslint": "8.58.0",
     "zx": "8.8.5"
   },
   "scripts": {
