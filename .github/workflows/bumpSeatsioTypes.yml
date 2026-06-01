@@ -31,21 +31,32 @@ jobs:
         with:
           node-version: 24
 
-      - name: Update package.json
+      - name: Update package.json files
         env:
           VERSION: ${{ github.event.inputs.version }}
         run: |
           PKG="@seatsio/seatsio-types"
-          jq --arg pkg "$PKG" --arg v "$VERSION" '.devDependencies[$pkg] = $v' \
-            package.json > package.json.tmp && mv package.json.tmp package.json
+          for dir in . example; do
+            file="$dir/package.json"
+            if [ -f "$file" ] && jq -e --arg pkg "$PKG" '.devDependencies | has($pkg)' "$file" > /dev/null; then
+              jq --arg pkg "$PKG" --arg v "$VERSION" '.devDependencies[$pkg] = $v' \
+                "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+              echo "Updated $PKG to $VERSION in $file:"
+              grep "$PKG" "$file"
+            else
+              echo "Skipping $file ($PKG not found in devDependencies)"
+            fi
+          done
 
-          echo "Updated $PKG to $VERSION:"
-          grep "$PKG" package.json
-
-      - name: Update yarn.lock
+      - name: Update yarn.lock files
         run: |
           corepack enable || true
-          yarn install --mode update-lockfile || yarn install
+          for dir in . example; do
+            if [ -f "$dir/package.json" ]; then
+              echo "Running yarn install in $dir"
+              ( cd "$dir" && { yarn install --mode update-lockfile || yarn install; } )
+            fi
+          done
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8
@@ -59,3 +70,5 @@ jobs:
           add-paths: |
             package.json
             yarn.lock
+            example/package.json
+            example/yarn.lock
