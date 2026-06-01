@@ -48,14 +48,15 @@ jobs:
             fi
           done
 
-      - name: Update yarn.lock files
-        run: |
-          for dir in . example; do
-            if [ -f "$dir/package.json" ]; then
-              echo "Running yarn install in $dir"
-              ( cd "$dir" && yarn install )
-            fi
-          done
+      - name: Update root yarn.lock
+        run: yarn install
+
+      - name: Build library
+        run: yarn build
+
+      - name: Update example yarn.lock
+        run: yarn install
+        working-directory: example
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8
