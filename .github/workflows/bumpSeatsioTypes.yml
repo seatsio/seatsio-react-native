@@ -50,11 +50,10 @@ jobs:
 
       - name: Update yarn.lock files
         run: |
-          corepack enable || true
           for dir in . example; do
             if [ -f "$dir/package.json" ]; then
               echo "Running yarn install in $dir"
-              ( cd "$dir" && { yarn install --mode update-lockfile || yarn install; } )
+              ( cd "$dir" && yarn install )
             fi
           done
 
@@ -66,7 +65,7 @@ jobs:
           body: |
             Updates `@seatsio/seatsio-types` to `${{ github.event.inputs.version }}` and refreshes `yarn.lock`.
           branch: "bump/seatsio-types-${{ github.event.inputs.version }}"
-          base: main
+          base: master
           add-paths: |
             package.json
             yarn.lock
