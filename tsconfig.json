@@ -2,6 +2,7 @@
     "extends": "@tsconfig/react-native/tsconfig.json",
     "compilerOptions": {
         "types": ["node", "react-native"],
+        "ignoreDeprecations": "6.0"
     },
     "include": ["index.ts", "components/**/*"]
 }
