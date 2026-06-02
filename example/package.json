@@ -18,7 +18,7 @@
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@react-native/metro-config": "0.85.2",
-    "@seatsio/seatsio-types": "6.16.0",
+    "@seatsio/seatsio-types": "6.15.0",
     "@types/react": "19.2.14",
     "typescript": "6.0.3"
   },
