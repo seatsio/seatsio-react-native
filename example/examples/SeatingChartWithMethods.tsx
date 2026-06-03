@@ -64,6 +64,7 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
                         </View>
                     )}
                 </ScrollView>
+
             </View>
         )
     }
@@ -74,7 +75,7 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
         },
         scrollview: {
             alignItems: 'center',
-            paddingVertical: 20,
+            paddingVertical: 40,
         },
         chart: {
             width: '100%',

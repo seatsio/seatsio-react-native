@@ -16,10 +16,12 @@ class SimpleSeatingChart extends React.Component {
                             event="smallTheatreEvent2"
                         />
                     </View>
+
                 </ScrollView>
             </View>
         )
     }
+
 
     styles = StyleSheet.create({
         container: {
@@ -27,7 +29,7 @@ class SimpleSeatingChart extends React.Component {
         },
         scrollview: {
             alignItems: 'center',
-            paddingVertical: 20,
+            paddingVertical: 40,
         },
         chart: {
             width: '100%',
@@ -36,5 +38,6 @@ class SimpleSeatingChart extends React.Component {
     })
 
 }
+
 
 export default SimpleSeatingChart

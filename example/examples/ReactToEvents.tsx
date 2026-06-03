@@ -47,7 +47,7 @@ class ReactToEventsExample extends React.Component {
         },
         scrollview: {
             alignItems: 'center',
-            paddingVertical: 20,
+            paddingVertical: 40,
         },
         chart: {
             width: '100%',

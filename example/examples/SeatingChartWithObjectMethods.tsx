@@ -77,17 +77,17 @@ class SeatingChartWithObjectMethods extends React.Component<{}, { chart?: Seatin
 
                     </View>
                 </ScrollView>
+
             </View>
         )
     }
-
     styles = StyleSheet.create({
         container: {
             flex: 1,
         },
         scrollview: {
             alignItems: 'center',
-            paddingVertical: 20,
+            paddingVertical: 40,
         },
         chart: {
             width: '100%',
@@ -96,5 +96,6 @@ class SeatingChartWithObjectMethods extends React.Component<{}, { chart?: Seatin
     })
 
 }
+
 
 export default SeatingChartWithObjectMethods
