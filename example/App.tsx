@@ -17,7 +17,7 @@ export default class App extends React.Component<{}, { Component: React.Componen
     renderExample ([Component, title]: [React.ComponentType, string]) {
         return (
             <TouchableOpacity key={title} style={styles.button} onPress={() => this.setState({ Component })}>
-                <Text>{title}</Text>
+                <Text style={styles.buttonText}>{title}</Text>
             </TouchableOpacity>
         )
     }
@@ -35,14 +35,19 @@ export default class App extends React.Component<{}, { Component: React.Componen
 
         return (
             <View style={styles.container}>
-                {Component && <Component/>}
-                {Component && this.renderBackButton()}
-                {!Component && (
-                    <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.scrollview}
-                        showsVerticalScrollIndicator={false}>
-                        {examples.map(example => this.renderExample(example))}
-                    </ScrollView>
-                )}
+                {Component
+                    ? (
+                        <View style={styles.chartContainer}>
+                            <Component/>
+                            {this.renderBackButton()}
+                        </View>
+                    )
+                    : (
+                        <ScrollView contentContainerStyle={styles.scrollview}>
+                            {examples.map(example => this.renderExample(example))}
+                        </ScrollView>
+                    )
+                }
             </View>
         )
     }
@@ -62,25 +67,31 @@ export default class App extends React.Component<{}, { Component: React.Componen
 
 const styles = StyleSheet.create({
     container: {
-        ...StyleSheet.absoluteFillObject,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    chartContainer: {
+        flex: 1,
     },
     scrollview: {
-        alignItems: 'center',
+        alignItems: 'stretch',
         paddingVertical: 40,
+        paddingHorizontal: 20,
     },
     button: {
-        flex: 1,
         marginTop: 10,
         backgroundColor: 'rgba(220,220,220,0.7)',
         paddingHorizontal: 18,
         paddingVertical: 12,
         borderRadius: 20,
     },
+    buttonText: {
+        fontSize: 16,
+        textAlign: 'center',
+    },
     back: {
         position: 'absolute',
-        top: 30,
+        top: 12,
         left: 12,
         backgroundColor: 'rgba(255,255,255,0.4)',
         padding: 12,

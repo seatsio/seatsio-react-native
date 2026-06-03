@@ -1,7 +1,5 @@
-
-
 import React from 'react'
-import { StyleSheet, View, Text, ScrollView, Platform } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import SeatsioSeatingChart from '@seatsio/seatsio-react-native'
 
 class SeatingChartWithCustomPrompts extends React.Component {
@@ -23,7 +21,7 @@ class SeatingChartWithCustomPrompts extends React.Component {
     render () {
         return (
             <View style={this.styles.container}>
-                <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
+                <ScrollView contentContainerStyle={this.styles.scrollview}>
                     <Text style={{ fontWeight: 'bold' }}>Demo: onPlacesPrompt</Text>
                     <View style={this.styles.chart}>
                         <SeatsioSeatingChart
@@ -79,14 +77,11 @@ class SeatingChartWithCustomPrompts extends React.Component {
 
     styles = StyleSheet.create({
         container: {
-            ...StyleSheet.absoluteFillObject,
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            marginTop: 10,
+            flex: 1,
         },
         scrollview: {
             alignItems: 'center',
-            paddingVertical: 40,
+            paddingVertical: 20,
         },
         chart: {
             width: '100%',
