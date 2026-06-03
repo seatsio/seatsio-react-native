@@ -8,6 +8,7 @@ export default {
   clean: true,
   dts: true,
   format: ['esm'],
+  outExtensions: () => ({ js: '.js', dts: '.d.ts' }),
   minify: false,
   unbundle: true,
   deps: { skipNodeModulesBundle: true },
