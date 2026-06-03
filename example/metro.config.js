@@ -23,10 +23,10 @@ const config = {
   },
   resolver: {
     assetExts: assetExts.filter(ext => ext !== 'svg'),
-    sourceExts: [...sourceExts, 'svg'],
+    sourceExts: [...sourceExts, 'svg', 'mjs'],
   },
   watchFolders: [
-    require('node:path').resolve(__dirname, '../dist'),
+    require('node:path').resolve(__dirname, '..'),
   ],
 };
 
