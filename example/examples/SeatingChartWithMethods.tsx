@@ -13,7 +13,7 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
 
         return (
             <View style={this.styles.container}>
-                <ScrollView contentContainerStyle={this.styles.scrollview}>
+                <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
                     <Text>Demo: how to call methods on chart</Text>
                     <View style={this.styles.chart}>
                         <SeatsioSeatingChart
@@ -64,17 +64,21 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
                         </View>
                     )}
                 </ScrollView>
+
             </View>
         )
     }
 
     styles = StyleSheet.create({
         container: {
-            flex: 1,
+            ...StyleSheet.absoluteFillObject,
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            marginTop: 10,
         },
         scrollview: {
             alignItems: 'center',
-            paddingVertical: 20,
+            paddingVertical: 40,
         },
         chart: {
             width: '100%',
