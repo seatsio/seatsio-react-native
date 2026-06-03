@@ -38,7 +38,7 @@ export default class App extends React.Component<{}, { Component: React.Componen
                 {Component && <Component/>}
                 {Component && this.renderBackButton()}
                 {!Component && (
-                    <ScrollView contentContainerStyle={styles.scrollview}
+                    <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.scrollview}
                         showsVerticalScrollIndicator={false}>
                         {examples.map(example => this.renderExample(example))}
                     </ScrollView>
@@ -62,13 +62,16 @@ export default class App extends React.Component<{}, { Component: React.Componen
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        ...StyleSheet.absoluteFill,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
     },
     scrollview: {
         alignItems: 'center',
         paddingVertical: 40,
     },
     button: {
+        flex: 1,
         marginTop: 10,
         backgroundColor: 'rgba(220,220,220,0.7)',
         paddingHorizontal: 18,

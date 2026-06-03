@@ -7,7 +7,7 @@ class SimpleSeatingChart extends React.Component {
     render () {
         return (
             <View style={this.styles.container}>
-                <ScrollView contentContainerStyle={this.styles.scrollview}>
+                <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={this.styles.scrollview}>
                     <Text>Demo: Simple Seating Chart, no config</Text>
                     <View style={this.styles.chart}>
                         <SeatsioSeatingChart
@@ -25,7 +25,10 @@ class SimpleSeatingChart extends React.Component {
 
     styles = StyleSheet.create({
         container: {
-            flex: 1,
+            ...StyleSheet.absoluteFill,
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            marginTop: 10,
         },
         scrollview: {
             alignItems: 'center',
