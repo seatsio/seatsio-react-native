@@ -2061,12 +2061,10 @@ expo-server@^56.0.4:
   resolved "https://registry.yarnpkg.com/expo-server/-/expo-server-56.0.4.tgz#b3c60b3a0c8949c2c73c7576a80db7998a1ce57f"
   integrity sha512-4dJ57KuAwDl7eQGD6aG9kTzBIftWAfHH1+6Zxy7NcPCBrKYis3/H5enGUz1asH8HHhONXfJ5BdJqfEWAEAgWxA==
 
-expo-status-bar@55.0.5:
-  version "55.0.5"
-  resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-55.0.5.tgz#85c244bee0325db84fbd02d66c752f8cd3e61d3f"
-  integrity sha512-qb0c3rJO2b7CC0gUVGi1JYp92oLenWdYGyk8l4YQs6U+uaXUTPv6aaFa3KkT2HON10re3AxxPNJci8rsz6kPxg==
-  dependencies:
-    react-native-is-edge-to-edge "^1.2.1"
+expo-status-bar@56.0.4:
+  version "56.0.4"
+  resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-56.0.4.tgz#01a0b6f9946ae51fe9d85c961ae9b485383cfcab"
+  integrity sha512-IGs/fDfkHXofy2ZQrGiXayhFK04HB85FZXorhcEhDZEcqASKgSqpak+HwUtAaR0MeTJwWyHNF7I6VmVbbp8EcA==
 
 expo@56.0.8:
   version "56.0.8"
@@ -3109,11 +3107,6 @@ react-is@^18.0.0:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
-
-react-native-is-edge-to-edge@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.2.1.tgz#64e10851abd9d176cbf2b40562f751622bde3358"
-  integrity sha512-FLbPWl/MyYQWz+KwqOZsSyj2JmLKglHatd3xLZWskXOpRaio4LfEDEz8E/A6uD8QoTHW6Aobw1jbEwK7KMgR7Q==
 
 react-native-webview@13.16.1:
   version "13.16.1"
