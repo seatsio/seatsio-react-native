@@ -62,7 +62,7 @@ export default class App extends React.Component<{}, { Component: React.Componen
 
 const styles = StyleSheet.create({
     container: {
-        ...StyleSheet.absoluteFillObject,
+        ...StyleSheet.absoluteFill,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },

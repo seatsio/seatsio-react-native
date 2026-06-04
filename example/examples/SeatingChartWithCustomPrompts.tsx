@@ -79,7 +79,7 @@ class SeatingChartWithCustomPrompts extends React.Component {
 
     styles = StyleSheet.create({
         container: {
-            ...StyleSheet.absoluteFillObject,
+            ...StyleSheet.absoluteFill,
             justifyContent: 'flex-end',
             alignItems: 'center',
             marginTop: 10,

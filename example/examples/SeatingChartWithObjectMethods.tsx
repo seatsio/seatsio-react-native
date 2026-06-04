@@ -83,7 +83,7 @@ class SeatingChartWithObjectMethods extends React.Component<{}, { chart?: Seatin
     }
     styles = StyleSheet.create({
         container: {
-            ...StyleSheet.absoluteFillObject,
+            ...StyleSheet.absoluteFill,
             justifyContent: 'flex-end',
             alignItems: 'center',
             marginTop: 10,

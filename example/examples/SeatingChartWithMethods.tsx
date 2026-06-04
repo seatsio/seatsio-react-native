@@ -71,7 +71,7 @@ class SeatingChartWithMethods extends React.Component<{}, { chart?: SeatingChart
 
     styles = StyleSheet.create({
         container: {
-            ...StyleSheet.absoluteFillObject,
+            ...StyleSheet.absoluteFill,
             justifyContent: 'flex-end',
             alignItems: 'center',
             marginTop: 10,
