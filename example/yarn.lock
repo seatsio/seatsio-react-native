@@ -2090,10 +2090,10 @@ expo-server@^57.0.0:
   resolved "https://registry.yarnpkg.com/expo-server/-/expo-server-57.0.0.tgz#5b9d9a126008007dd998ba019a0bf0fa2a0fd387"
   integrity sha512-18byjwFbHVFrGzI4IH1o2MZiiYwvO/y3d+JL3sq50Lg3Id1titwIRMh1fjbHbpM+wP6x14KJY0Ers1UYsjGq8Q==
 
-expo-status-bar@56.0.4:
-  version "56.0.4"
-  resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-56.0.4.tgz#01a0b6f9946ae51fe9d85c961ae9b485383cfcab"
-  integrity sha512-IGs/fDfkHXofy2ZQrGiXayhFK04HB85FZXorhcEhDZEcqASKgSqpak+HwUtAaR0MeTJwWyHNF7I6VmVbbp8EcA==
+expo-status-bar@57.0.0:
+  version "57.0.0"
+  resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-57.0.0.tgz#724313f13127dd6cbf1d2d6644e62a13574671b4"
+  integrity sha512-wq1fDVAjfrzCj67hOcvEkGpgRrb6xVI7oSA3bfsQ08SFk8il7vGixJq+xyEbtdcrI9CDiNKQrT3ZIjgnyGbbBA==
 
 expo@57.0.1:
   version "57.0.1"
