@@ -1,4 +1,4 @@
-import { WebView } from 'react-native-webview'
+import { WebView, WebViewProps } from 'react-native-webview'
 import * as React from 'react'
 import Chart from './chart'
 import Deferred from './deferred'
@@ -63,7 +63,7 @@ export type JavaScriptInjectorFunction = (js: string, transformer?: TransformerF
 export class SeatsioSeatingChart extends React.Component<SeatingChartProps> {
     private divId: string
     private promises: Record<string, Deferred>
-    private webRef?: WebView | null
+    private webRef?: WebView<WebViewProps> | null
 
     constructor (props: SeatingChartProps) {
         super(props)
