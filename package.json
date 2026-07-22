@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@seatsio/seatsio-types": "6.17.0",
+    "@seatsio/seatsio-types": "6.18.0",
     "@stylistic/eslint-plugin": "5.10.0",
     "@swc/core": "1.15.43",
     "@tsconfig/react-native": "3.0.9",
