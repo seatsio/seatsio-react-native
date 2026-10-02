@@ -23,7 +23,7 @@
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "dependencies": {
-    "@seatsio/seatsio-types": "6.27.0",
+    "@seatsio/seatsio-types": "6.28.0",
     "prop-types": "15.8.1"
   },
   "peerDependencies": {
